@@ -6,7 +6,12 @@
     <title>Koshe Secondary School | Quality Education</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         /* Reset default browser styles */
         *{
@@ -28,26 +33,32 @@
             overflow-x: hidden;
         }
 
-        /* Header section styling - FULL WIDTH BACKGROUND */
+        /* Header section styling - BRIGHTER BACKGROUND */
         #header{
             width: 100%;
             min-height: 100vh;
-            background-image: url('images/school-building.jpg');
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/background.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             position: relative;
         }
 
-        /* Desktop Navigation */
-        .custom-navbar{
-            background: rgba(8, 8, 8, 0.95) !important;
-            padding: 15px 5%;
+        /* Navigation styling - EXACTLY like the portfolio */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 20px 5%;
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
+            background: #080808;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            left: 0;
+            right: 0;
         }
 
         /* Logo styling */
@@ -58,9 +69,21 @@
             text-decoration: none;
         }
 
+        /* Navigation list styling */
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
         /* Navigation link styling */
-        .nav-link-custom{
-            color: #fff !important;  
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: #fff;
             text-decoration: none;
             font-size: 16px;
             position: relative;
@@ -69,12 +92,12 @@
         }
 
         /* Active navigation link color */
-        .nav-link-custom.active {
-            color: #ff004f !important;
+        nav ul li a.active {
+            color: #ff004f;
         }
 
         /* Navigation link underline animation */
-        .nav-link-custom::after{
+        nav ul li a::after {
             content: '';
             width: 0;
             height: 3px;
@@ -86,8 +109,8 @@
         }
 
         /* Hover and active state for navigation underline */
-        .nav-link-custom:hover::after,
-        .nav-link-custom.active::after {
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
             width: 100%;
         }
 
@@ -130,6 +153,46 @@
             padding: 80px 0; 
             color: #ababab;
             scroll-margin-top: 80px;
+        }
+
+        /* Container styling */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Row styling */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+
+        /* Column styling */
+        .col-lg-4, .col-lg-8, .col-md-6, .col-md-4 {
+            padding: 0 15px;
+        }
+
+        .col-lg-4 {
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+        }
+
+        .col-lg-8 {
+            flex: 0 0 66.666667%;
+            max-width: 66.666667%;
+        }
+
+        .col-md-6 {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+
+        .col-md-4 {
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
         }
 
         /* About image styling */
@@ -236,6 +299,7 @@
             justify-content: space-between;
             min-height: 400px;
             text-align: center;
+            margin-bottom: 30px;
         }
 
         /* Academic background colors */
@@ -459,6 +523,7 @@
 
         /*-----------------contact---------*/
         #contact {
+            padding: 80px 0;
             scroll-margin-top: 80px;
         }
 
@@ -511,6 +576,10 @@
             margin-top: 20px;
         }
 
+        .btn.btn2:hover {
+            background: #e0003f;
+        }
+
         /* Form input styling with white text color */
         .form-control {
             background: #3a3a3a !important;
@@ -553,6 +622,7 @@
             padding: 25px 0;
             font-weight: 300;
             margin-top: 20px;
+            border-top: 1px solid #333;
         } 
 
         /* Copyright heart icon color */
@@ -560,159 +630,14 @@
             color: #ff004f;
         }
 
-        /* Modal styles */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .role-modal {
-            background: #1a1a1a;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 500px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        .role-options {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .role-option {
-            background: #333;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .role-option:hover {
-            background: #444;
-        }
-
-        .role-icon {
-            font-size: 40px;
-            margin-bottom: 10px;
-            color: #ff004f;
-        }
-
-        .login-form-container {
+        /* Mobile menu styling */
+        .fa-bars, .fa-times {
             display: none;
         }
 
-        .login-form-container.active {
-            display: block;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border-radius: 6px;
-            border: 1px solid #555;
-            background: #333;
-            color: #fff;
-        }
-
-        .remember-forgot {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .remember-me {
+        #sidemenu {
             display: flex;
             align-items: center;
-        }
-
-        .remember-me input {
-            margin-right: 8px;
-        }
-
-        .forgot-password {
-            color: #ff004f;
-            text-decoration: none;
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 12px;
-            background: #ff004f;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s;
-        }
-
-        .login-btn:hover {
-            background: #e0003f;
-        }
-
-        .login-help {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .login-help a {
-            color: #ff004f;
-            text-decoration: none;
-        }
-
-        .back-to-roles {
-            background: none;
-            border: 1px solid #ff004f;
-            color: #ff004f;
-            padding: 8px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-right: 10px;
         }
 
         /* Mobile Styles */
@@ -771,19 +696,46 @@
                 padding-top: 100px;
                 text-align: center;
             }
-            
-            .role-options {
-                grid-template-columns: 1fr;
+
+            /* Mobile menu styles - exactly like portfolio */
+            .fa-bars {
+                display: block;
+                font-size: 25px;
+                cursor: pointer;
             }
-            
-            /* MOBILE-SPECIFIC BACKGROUND FOR HOME SECTION - FULL BRIGHTNESS */
-            #header {
-                background-image: url('images/school-building.jpg');
-                background-size: cover;
-                background-position: center;
-                background-repeat: no-repeat;
-                position: relative;
-                background-attachment: scroll;
+
+            #sidemenu {
+                position: fixed;
+                top: 0;
+                right: -200px;
+                width: 200px;
+                height: 100vh;
+                background: #080808;
+                padding-top: 50px;
+                z-index: 2;
+                transition: right 0.5s;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #sidemenu li {
+                display: block;
+                margin: 25px;
+            }
+
+            .fa-times {
+                display: block;
+                position: absolute;
+                top: 25px;
+                left: 25px;
+                font-size: 25px;
+                cursor: pointer;
+            }
+
+            /* Column adjustments for mobile */
+            .col-md-6, .col-md-4, .col-lg-4, .col-lg-8 {
+                flex: 0 0 100%;
+                max-width: 100%;
             }
         }
 
@@ -810,7 +762,7 @@
             }
             
             /* Adjust navigation for very small screens */
-            .custom-navbar {
+            nav {
                 padding: 10px 5%;
             }
             
@@ -818,98 +770,34 @@
             .header-content {
                 padding-top: 80px;
             }
-            
-            /* MOBILE BACKGROUND FOR SMALL PHONES - FULL BRIGHTNESS */
-            #header {
-                background-image: url('images/school-building.jpg');
-                background-size: cover;
-                background-position: center;
-                position: relative;
-                background-attachment: scroll;
-            }
-        }
-
-        /* Desktop specific styles */
-        @media only screen and (min-width: 1025px) {
-            /* Equal spacing between logo and navigation items */
-            .custom-navbar {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                width: 100%;
-            }
-            
-            /* Equal spacing for navigation items */
-            .nav-item {
-                margin: 0 20px;
-            }
-            
-            /* Fixed navigation for desktop */
-            .custom-navbar {
-                position: fixed;
-                top: 0;
-                width: 100%;
-                background: rgba(8, 8, 8, 0.95);
-                z-index: 999;
-                padding: 15px 5%;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            }
-            
-            /* Ensure background spans full width on desktop */
-            #header {
-                background-size: cover;
-                background-position: center;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header Section -->
     <div id="header">
-        <!-- Bootstrap Navigation -->
-        <nav class="navbar navbar-expand-lg custom-navbar">
-            <div class="container-fluid">
-                <a class="navbar-brand logo" href="#header">Koshe</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-bars text-white"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-custom active" href="#header">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-custom" href="#about">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-custom" href="#academics">Academics</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-custom" href="#gallery">Gallery</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-custom" href="#staff">Staff</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-custom" href="#contact">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-custom" href="#" id="loginBtn">Login</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
         <div class="container">
-            <div class="row header-content">
-                <div class="col-12">
-                    <div class="header-text">
-                        <p style="color: #ff004f;font-weight: bold;" class="header-subtitle">Quality Education</p>
-                        <h1 style="color:#ff004f;">Welcome to <span>Koshe</span> <br>Secondary School</h1>
-                        <p style="font-size: 18px; margin-bottom: 30px;">Providing excellent education in Mareko Special Woreda, Central Ethiopia</p>
-                        <a href="https://t.me/Koshe_S_S" class="btn-custom">Learn More</a>
-                    </div>
+            <!-- Navigation - EXACTLY like portfolio website -->
+            <nav>
+                <a href="#header" class="logo">Koshe</a>
+                <ul id="sidemenu">
+                    <li><a href="#header" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#academics" class="nav-link">Academics</a></li>
+                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                    <li><a href="#staff" class="nav-link">Staff</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                    <i class="fas fa-times close-icon" onclick="closemenu()"></i>
+                </ul>
+                <i class="fas fa-bars menu-icon" onclick="openmenu()"></i>
+            </nav>
+            
+            <div class="header-content">
+                <div class="header-text">
+                    <p style="color: #ff004f;font-weight: bold;" class="header-subtitle">Quality Education</p>
+                    <h1 style="color:#fff;">Welcome to <span style="color:#ff004f;">Koshe</span> <br>Secondary School</h1>
+                    <p style="font-size: 18px; margin-bottom: 30px;">Providing excellent education in Mareko Special Woreda, Central Ethiopia</p>
+                    <a href="#about" class="btn-custom">Learn More</a>
                 </div>
             </div>
         </div>
@@ -921,7 +809,7 @@
             <h1 class="sub-title">About Our School</h1>
             <div class="row">
                 <div class="col-lg-4 about-col-1">
-                  <img src="images/About2.jpg" alt="About Our School" class="img-fluid">  
+                  <img src="images/About2.jpg" alt="About Our School">  
                 </div>
                 <div class="col-lg-8 about-col-2">
                     <p class="about-description">
@@ -968,28 +856,28 @@
         <div class="container">
             <h1 class="sub-title">Academic Programs</h1>
             <div class="row">
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4">
                     <div class="academic-item science-bg">
                         <i class="fas fa-atom"></i>
                         <h2>Natural Science</h2>
                         <p class="academic-description">Comprehensive science program with modern laboratories and hands-on experiments covering Biology, Chemistry, Physics, and Mathematics.</p>
-                        <a href="https://t.me/Koshe_S_S"> <button class="academic-btn">Learn more</button></a>
+                        <a href="#contact"> <button class="academic-btn">Learn more</button></a>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4">
                     <div class="academic-item social-bg">
                         <i class="fas fa-globe-africa"></i>
                         <h2>Social Science</h2>
                         <p class="academic-description">Exploring human society, history, geography, and civic education for comprehensive understanding of social structures and dynamics.</p>
-                        <a href="https://t.me/Koshe_S_S"><button class="academic-btn">Learn more</button></a>
+                        <a href="#contact"><button class="academic-btn">Learn more</button></a>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4">
                     <div class="academic-item language-bg">
                         <i class="fas fa-language"></i>
                         <h2>Language Studies</h2>
                         <p class="academic-description">Comprehensive language education focusing on communication skills and cultural understanding in English, Amharic, and Marakigna.</p>
-                        <a href="https://t.me/Koshe_S_S"><button class="academic-btn">Learn more</button></a>
+                        <a href="#contact"><button class="academic-btn">Learn more</button></a>
                     </div>
                 </div>
             </div>
@@ -1004,7 +892,7 @@
                 <!-- 12 Gallery Items -->
                 <div class="col-md-6 col-lg-4">
                     <div class="gallery">
-                        <img src="images/Top.jpg" alt="Top Scorers" class="img-fluid">
+                        <img src="images/Top.jpg" alt="Top Scorers">
                         <div class="layer">
                             <h3>Top Scorers</h3>
                             <p>Celebrating our highest achieving students in academic excellence</p>
@@ -1013,7 +901,7 @@
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="gallery">
-                        <img src="images/Reward.jpg" alt="Student Appreciation" class="img-fluid">
+                        <img src="images/Reward.jpg" alt="Student Appreciation">
                         <div class="layer">
                             <h3>Student Appreciation</h3>
                             <p>Recognizing outstanding student achievements and contributions</p>
@@ -1022,7 +910,7 @@
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="gallery">
-                        <img src="images/sport.jpg" alt="Sports Competition" class="img-fluid">
+                        <img src="images/sport.jpg" alt="Sports Competition">
                         <div class="layer">
                             <h3>Sports Competition</h3>
                             <p>Annual sports events promoting physical fitness and teamwork</p>
@@ -1031,7 +919,7 @@
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="gallery">
-                        <img src="images/culture.jpg" alt="Cultural Festival" class="img-fluid">
+                        <img src="images/culture.jpg" alt="Cultural Festival">
                         <div class="layer">
                             <h3>Cultural Festival</h3>
                             <p>Celebrating Ethiopian cultural heritage through traditional performances</p>
@@ -1040,7 +928,7 @@
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="gallery">
-                        <img src="images/students in garden.jpg" alt="Garden Activities" class="img-fluid">
+                        <img src="images/students in garden.jpg" alt="Garden Activities">
                         <div class="layer">
                             <h3>Garden Activities</h3>
                             <p>Practical agriculture learning and environmental education</p>
@@ -1049,7 +937,7 @@
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="gallery">
-                        <img src="images/Teachersingarden.jpg" alt="Teachers in Garden" class="img-fluid">
+                        <img src="images/Teachersingarden.jpg" alt="Teachers in Garden">
                         <div class="layer">
                             <h3>Teachers in Garden</h3>
                             <p>Staff supervision and participation in school garden activities</p>
@@ -1058,7 +946,7 @@
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="gallery">
-                        <img src="images/QuestionAndAnswer.jpg" alt="Q&A Session" class="img-fluid">
+                        <img src="images/QuestionAndAnswer.jpg" alt="Q&A Session">
                         <div class="layer">
                             <h3>Question Answer Program</h3>
                             <p>Interactive learning sessions between students and teachers</p>
@@ -1067,7 +955,7 @@
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="gallery">
-                        <img src="images/office.jpg" alt="Reading Celebration" class="img-fluid">
+                        <img src="images/office.jpg" alt="Reading Celebration">
                         <div class="layer">
                             <h3>Reading Celebration</h3>
                             <p>Promoting literacy and reading culture among students</p>
@@ -1076,7 +964,7 @@
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="gallery">
-                        <img src="images/OfficeMeeting.jpg" alt="School Leadership" class="img-fluid">
+                        <img src="images/OfficeMeeting.jpg" alt="School Leadership">
                         <div class="layer">
                             <h3>School Leadership</h3>
                             <p>Administrative activities and strategic planning sessions</p>
@@ -1085,7 +973,7 @@
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="gallery">
-                        <img src="images/lab.jpg" alt="Science Laboratory" class="img-fluid">
+                        <img src="images/lab.jpg" alt="Science Laboratory">
                         <div class="layer">
                             <h3>Science Laboratory</h3>
                             <p>Hands-on experiments and practical science education</p>
@@ -1094,7 +982,7 @@
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="gallery">
-                        <img src="images/gusts.jpg" alt="Guest Visits" class="img-fluid">
+                        <img src="images/gusts.jpg" alt="Guest Visits">
                         <div class="layer">
                             <h3>Guest Visits</h3>
                             <p>Educational visits and knowledge sharing with experts</p>
@@ -1103,7 +991,7 @@
                 </div>
                 <div class="col-md-6 col-lg-4">
                     <div class="gallery">
-                        <img src="images/home.jpg" alt="School Campus" class="img-fluid">
+                        <img src="images/home.jpg" alt="School Campus">
                         <div class="layer">
                             <h3>School Campus</h3>
                             <p>Beautiful campus environment conducive to learning</p>
@@ -1119,21 +1007,21 @@
         <div class="container">
             <h1 class="sub-title">Our Teaching Staff</h1>
             <div class="row">
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4">
                     <div class="staff-item principal-bg">
                         <i class="fas fa-user-tie"></i>
                         <h2>ZERIHUN</h2>
                         <p class="staff-description">School Principal with M.Ed in Educational Leadership and 15 years of experience in school administration and curriculum development.</p>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4">
                     <div class="staff-item math-bg">
                         <i class="fas fa-chalkboard-teacher"></i>
                         <h2>Mr. K</h2>
                         <p class="staff-description">Mathematics Teacher with M.Sc in Mathematics and specialization in curriculum development and student-centered learning approaches.</p>
                     </div>
                 </div>
-                <div class="col-md-4 mb-4">
+                <div class="col-md-4">
                     <div class="staff-item science-bg">
                         <i class="fas fa-flask"></i>
                         <h2>Mr. Y</h2>
@@ -1190,90 +1078,6 @@
         </div>
     </div>
 
-    <!-- Enhanced Login Modal -->
-    <div class="modal-overlay" id="roleModal">
-        <div class="role-modal">
-            <!-- Role Selection -->
-            <div id="roleSelectionView">
-                <div class="modal-header">
-                    <h2>Welcome to Koshe School Portal</h2>
-                    <button class="close-modal" id="closeRoleModal">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <p>Please select your role to continue to the login page</p>
-                <div class="role-options">
-                    <div class="role-option" data-role="student">
-                        <div class="role-icon">
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <h3>Student</h3>
-                        <p>Access courses, assignments, and grades</p>
-                    </div>
-                    <div class="role-option" data-role="parent">
-                        <div class="role-icon">
-                            <i class="fas fa-user-friends"></i>
-                        </div>
-                        <h3>Parent</h3>
-                        <p>Monitor your child's progress</p>
-                    </div>
-                    <div class="role-option" data-role="teacher">
-                        <div class="role-icon">
-                            <i class="fas fa-chalkboard-teacher"></i>
-                        </div>
-                        <h3>Teacher</h3>
-                        <p>Access teaching materials</p>
-                    </div>
-                    <div class="role-option" data-role="staff">
-                        <div class="role-icon">
-                            <i class="fas fa-user-tie"></i>
-                        </div>
-                        <h3>Staff</h3>
-                        <p>Administrative tools</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Login Form -->
-            <div class="login-form-container" id="loginFormContainer">
-                <div class="modal-header">
-                    <h3>Login as <span class="role-highlight" id="selectedRoleText">Student</span></h3>
-                    <div>
-                        <button class="back-to-roles" id="backToRoles">
-                            <i class="fas fa-arrow-left"></i> Back
-                        </button>
-                        <button class="close-modal" id="closeLoginModal">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label for="username">Username or Email</label>
-                        <input type="text" id="username" name="username" required placeholder="Enter your username or email">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required placeholder="Enter your password">
-                    </div>
-                    <div class="remember-forgot">
-                        <div class="remember-me">
-                            <input type="checkbox" id="rememberMe" name="rememberMe">
-                            <label for="rememberMe">Remember me</label>
-                        </div>
-                        <a href="#" class="forgot-password">Forgot Password?</a>
-                    </div>
-                    <button type="submit" class="login-btn">Login to Portal</button>
-                </form>
-                <div class="login-help">
-                    <p>Need help? Contact school administration at <strong>support@kosheschool.edu.et</strong></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Tab functionality
         var tablinks = document.getElementsByClassName("tab-links");
@@ -1289,6 +1093,29 @@
             event.currentTarget.classList.add("active-link");
             document.getElementById(tabname).classList.add("active-tab");
         }
+        
+        // Mobile menu functionality
+        var sidemenu = document.getElementById("sidemenu");
+        
+        function openmenu() {
+            sidemenu.style.right = "0";
+            document.body.style.overflow = "hidden";
+        }
+        
+        function closemenu() {
+            sidemenu.style.right = "-200px";
+            document.body.style.overflow = "auto";
+        }
+        
+        // Close menu when clicking on navigation links
+        var navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    closemenu();
+                }
+            });
+        });
         
         // Smooth scrolling with fixed navigation offset
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1311,7 +1138,7 @@
         // Active navigation highlight on scroll
         window.addEventListener('scroll', function() {
             var sections = document.querySelectorAll('#header, #about, #academics, #gallery, #staff, #contact');
-            var navLinks = document.querySelectorAll('.nav-link-custom');
+            var navLinks = document.querySelectorAll('.nav-link');
             
             var current = '';
             sections.forEach(section => {
@@ -1334,6 +1161,7 @@
         const form = document.getElementById('contact-form');
         const nameInput = document.getElementById('name');
         const emailInput = document.getElementById('email');
+        const subjectInput = document.getElementById('subject');
         const messageInput = document.getElementById('message');
         
         form.addEventListener('submit', function(e) {
@@ -1358,6 +1186,14 @@
                 emailInput.classList.remove('is-invalid');
             }
             
+            // Subject validation
+            if (subjectInput.value.trim() === '') {
+                subjectInput.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                subjectInput.classList.remove('is-invalid');
+            }
+            
             // Message validation
             if (messageInput.value.trim() === '') {
                 messageInput.classList.add('is-invalid');
@@ -1380,112 +1216,6 @@
                         form.reset();
                     })
                     .catch(error => console.error('Error!', error.message));
-            }
-        });
-
-        // Login Modal Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const loginBtn = document.getElementById('loginBtn');
-            const roleModal = document.getElementById('roleModal');
-            const roleOptions = document.querySelectorAll('.role-option');
-            const roleSelectionView = document.getElementById('roleSelectionView');
-            const loginFormContainer = document.getElementById('loginFormContainer');
-            const backToRoles = document.getElementById('backToRoles');
-            const selectedRoleText = document.getElementById('selectedRoleText');
-            const loginForm = document.getElementById('loginForm');
-            const closeRoleModal = document.getElementById('closeRoleModal');
-            const closeLoginModal = document.getElementById('closeLoginModal');
-
-            let currentRole = '';
-
-            // Show modal when login button is clicked
-            loginBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                roleModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                showRoleSelection();
-            });
-
-            // Role selection
-            roleOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    currentRole = this.getAttribute('data-role');
-                    selectedRoleText.textContent = currentRole.charAt(0).toUpperCase() + currentRole.slice(1);
-                    showLoginForm();
-                });
-            });
-
-            // Back to role selection
-            backToRoles.addEventListener('click', function() {
-                showRoleSelection();
-            });
-
-            // Close role modal
-            closeRoleModal.addEventListener('click', function() {
-                closeModal(roleModal);
-            });
-
-            // Close login modal
-            closeLoginModal.addEventListener('click', function() {
-                closeModal(roleModal);
-            });
-
-            // Login form submission
-            loginForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
-                
-                if (username && password) {
-                    simulateLogin(currentRole, username);
-                } else {
-                    alert('Please enter both username and password.');
-                }
-            });
-
-            // Close modal when clicking outside
-            roleModal.addEventListener('click', function(e) {
-                if (e.target === roleModal) {
-                    closeModal(roleModal);
-                }
-            });
-
-            // Close modal with Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && roleModal.classList.contains('active')) {
-                    closeModal(roleModal);
-                }
-            });
-
-            function showRoleSelection() {
-                roleSelectionView.style.display = 'block';
-                loginFormContainer.classList.remove('active');
-                loginForm.reset();
-            }
-
-            function showLoginForm() {
-                roleSelectionView.style.display = 'none';
-                loginFormContainer.classList.add('active');
-            }
-
-            function closeModal(modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-                showRoleSelection();
-            }
-
-            function simulateLogin(role, username) {
-                const loginBtn = document.querySelector('.login-btn');
-                const originalText = loginBtn.textContent;
-                loginBtn.textContent = 'Logging in...';
-                loginBtn.disabled = true;
-
-                setTimeout(() => {
-                    alert(`Successfully logged in as ${role}: ${username}\nRedirecting to ${role} dashboard...`);
-                    loginBtn.textContent = originalText;
-                    loginBtn.disabled = false;
-                    closeModal(roleModal);
-                }, 2000);
             }
         });
     </script>
