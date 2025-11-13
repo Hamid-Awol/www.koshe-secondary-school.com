@@ -5,250 +5,1268 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Koshe Secondary School | Quality Education</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #080808;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        #header {
+            width: 100%;
+            min-height: 100vh;
+            background: #080808; /* Black background */
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('images/background1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: brightness(1.8); /* Increased brightness */
+            z-index: 1;
+        }
+
+        .container {
+            padding: 10px 5%;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 100%;
+            padding: 15px 5%;
+            background: rgba(8, 8, 8, 0.95);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            position: relative;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        nav ul li a.active {
+            color: #ff004f;
+        }
+
+        nav ul li a::after {
+            content: '';
+            width: 0;
+            height: 3px;
+            background: #ff004f;
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            transition: 0.5s;
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        .header-text {
+            max-width: 800px;
+        }
+
+        .header-subtitle {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .header-text h1 {
+            font-size: 52px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .header-text h1 span {
+            color: #ff004f;
+        }
+
+        #about {
+            padding: 80px 0;
+            color: #ababab;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+
+        .about-col-1 {
+            flex-basis: 35%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .about-col-1 img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 15px;
+            object-fit: cover;
+        }
+
+        .about-col-2 {
+            flex-basis: 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .sub-title {
+            font-size: 48px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .about-description {
+            color: #867979;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .tab-titles {
+            display: flex;
+            margin: 20px 0 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tab-links {
+            margin-right: 20px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .tab-links::after {
+            content: '';
+            width: 0;
+            height: 3px;
+            background: #ff004f;
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            transition: 0.5s;
+        }
+
+        .tab-links.active-link::after {
+            width: 50%;
+        }
+
+        .tab-contents ul li {
+            list-style: none;
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .tab-contents ul li span {
+            color: #b54769;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .tab-contents {
+            display: none;
+        }
+
+        .tab-contents.active-tab {
+            display: block;
+        }
+
+        #academics {
+            padding: 80px 0;
+        }
+
+        .academics-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-gap: 40px;
+            margin-top: 50px;
+        }
+
+        .academic-item {
+            padding: 40px 30px;
+            font-size: 16px;
+            font-weight: 300;
+            border-radius: 10px;
+            transition: transform 0.5s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 400px;
+            text-align: center;
+        }
+
+        .science-bg {
+            background: linear-gradient(135deg, #2e8b57 0%, #3cb371 100%);
+        }
+
+        .social-bg {
+            background: linear-gradient(135deg, #daa520 0%, #ffd700 100%);
+        }
+
+        .language-bg {
+            background: linear-gradient(135deg, #4682b4 0%, #5f9ea0 100%);
+        }
+
+        .academic-item i {
+            font-size: 50px;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .academic-item h2 {
+            font-size: 30px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .academic-description {
+            color: #fff;
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .academic-btn {
+            color: #fff;
+            background-color: rgb(117, 29, 199);
+            width: 120px;
+            height: 40px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: auto;
+            align-self: center;
+        }
+
+        .academic-btn:hover {
+            background-color: rgb(95, 20, 165);
+        }
+
+        .academic-item:hover {
+            transform: translateY(-10px);
+        }
+
+        #gallery {
+            padding: 80px 0;
+        }
+
+        .gallery-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-gap: 40px;
+            margin-top: 50px;
+        }
+
+        .gallery {
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            aspect-ratio: 4/3;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            display: block;
+            transition: transform 0.5s, filter 0.5s;
+            object-fit: cover;
+        }
+
+        .layer {
+            width: 100%;
+            height: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), #ff004f);
+            border-radius: 10px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 40px;
+            text-align: center;
+            transition: height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+        }
+
+        .gallery:hover img {
+            transform: scale(1.1);
+            filter: brightness(0.7);
+        }
+
+        .gallery:hover .layer {
+            height: 100%;
+            opacity: 1;
+        }
+
+        .layer h3 {
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 24px;
+            transform: translateY(20px);
+            transition: transform 0.5s 0.2s;
+        }
+
+        .layer p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            transform: translateY(20px);
+            transition: transform 0.5s 0.3s;
+        }
+
+        .layer a {
+            margin-top: 20px;
+            color: #ff004f;
+            text-decoration: none;
+            font-size: 18px;
+            line-height: 60px;
+            background: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            transform: translateY(20px);
+            transition: transform 0.5s 0.4s, background 0.3s, color 0.3s;
+        }
+
+        .gallery:hover .layer h3,
+        .gallery:hover .layer p,
+        .gallery:hover .layer a {
+            transform: translateY(0);
+        }
+
+        .layer a:hover {
+            background: #ff004f;
+            color: #fff;
+        }
+
+        .btn {
+            display: block;
+            margin: 50px auto;
+            width: fit-content;
+            border: 1px solid #ff004f;
+            padding: 14px 50px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #fff;
+            transition: background 0.5s;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: #ff004f;
+            color: #fff;
+        }
+
+        #staff {
+            padding: 80px 0;
+        }
+
+        .staff-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-gap: 40px;
+            margin-top: 50px;
+        }
+
+        .staff-item {
+            padding: 40px 30px;
+            font-size: 16px;
+            font-weight: 300;
+            border-radius: 10px;
+            transition: transform 0.5s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 450px;
+            text-align: center;
+            align-items: center;
+        }
+
+        .principal-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .math-bg {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .science-bg {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        /* Circular image placeholder for staff */
+        .staff-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        /* Removed the "Add Photo" text */
+        .staff-image::after {
+            content: "";
+            position: absolute;
+        }
+
+        .staff-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .staff-item h2 {
+            font-size: 30px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .staff-description {
+            color: #fff;
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        #contact {
+            padding: 80px 0;
+        }
+
+        .contact-left {
+            flex-basis: 35%;
+        }
+
+        .contact-right {
+            flex-basis: 60%;
+        }
+
+        .contact-left p {
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-left p i {
+            color: #ff004f;
+            margin-right: 15px;
+            font-size: 25px;
+        }
+
+        .social-icons {
+            margin-top: 30px;
+        }
+
+        .social-icons a {
+            text-decoration: none;
+            font-size: 30px;
+            margin-right: 15px;
+            color: #ababab;
+            display: inline-block;
+            transition: transform 0.5s;
+        }
+
+        .social-icons a:hover {
+            color: #ff004f;
+            transform: translateY(-5px);
+        }
+
+        .btn.btn2 {
+            display: inline-block;
+            background: #ff004f;
+            padding: 14px 50px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #fff;
+            transition: background 0.5s;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .contact-right form {
+            width: 100%;
+        }
+
+        .form-control {
+            background: #3a3a3a !important;
+            color: #ffffff !important;
+            border: 1px solid #555 !important;
+            padding: 15px !important;
+            margin: 15px 0 !important;
+            font-size: 18px !important;
+            border-radius: 6px !important;
+            width: 100%;
+        }
+
+        .form-control::placeholder {
+            color: #cccccc !important;
+        }
+
+        .form-control:focus {
+            border-color: #ff004f !important;
+            box-shadow: 0 0 0 0.2rem rgba(255, 0, 79, 0.25) !important;
+            background: #3a3a3a !important;
+            color: #ffffff !important;
+        }
+
+        form .btn2 {
+            padding: 14px 60px;
+            font-size: 18px;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+        }
+
+        .copyright {
+            width: 100%;
+            text-align: center;
+            padding: 25px 0;
+            font-weight: 300;
+            margin-top: 20px;
+        }
+
+        .copyright i {
+            color: #ff004f;
+        }
+
+        .menu-icon, .close-icon {
+            display: none;
+        }
+
+        #sidemenu {
+            transition: right 0.5s ease-in-out;
+        }
+
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .role-modal {
+            background: #1a1a1a;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .role-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .role-option {
+            background: #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .role-option:hover {
+            background: #444;
+        }
+
+        .role-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: #ff004f;
+        }
+
+        .login-form-container {
+            display: none;
+        }
+
+        .login-form-container.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #555;
+            background: #333;
+            color: #fff;
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember-me input {
+            margin-right: 8px;
+        }
+
+        .forgot-password {
+            color: #ff004f;
+            text-decoration: none;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #ff004f;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #e0003f;
+        }
+
+        .login-help {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-help a {
+            color: #ff004f;
+            text-decoration: none;
+        }
+
+        .back-to-roles {
+            background: none;
+            border: 1px solid #ff004f;
+            color: #ff004f;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        /* Mobile Responsive Styles */
+        @media only screen and (max-width: 768px) {
+            .menu-icon, .close-icon{
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .header-text h1{
+                font-size: 32px;
+            }
+            
+            .header-subtitle {
+                font-size: 24px;
+            }
+            
+            .menu-icon{
+                font-size: 25px;
+                cursor: pointer;
+                z-index: 1001;
+                color: #fff;
+            }
+            
+            .close-icon{
+                position: absolute;
+                top: 25px;
+                left: 25px;
+                font-size: 25px;
+                cursor: pointer;
+                z-index: 1001;
+                color: #fff;
+            }
+            
+            #sidemenu{
+                background: #ff004f;
+                position: fixed;
+                top: 0;
+                right: -200px;
+                width: 200px;
+                height: 100vh;
+                padding-top: 50px;
+                z-index: 1000;
+                flex-direction: column;
+                transition: right 0.5s ease-in-out;
+                display: flex;
+            }
+            
+            #sidemenu li{
+                display: block;
+                margin: 25px;
+                text-align: center;
+            } 
+            
+            .sub-title{
+                font-size: 36px;
+            }
+            
+            .about-col-1, .about-col-2{
+                flex-basis: 100%;
+            }
+            
+            .about-col-1{
+                margin-bottom: 30px;
+            }
+            
+            .about-col-1 img {
+                width: 100%;
+                max-width: 100% !important;
+                height: auto;
+            }
+            
+            .about-col-2{
+                font-size: 14px;
+            }
+            
+            .tab-links{
+                font-size: 16px;
+                margin-right: 20px;
+                margin-bottom: 10px;
+            }
+            
+            .contact-left, .contact-right{
+                flex-basis: 100%;
+            }
+            
+            .copyright{
+                font-size: 14px;
+            }
+            
+            .container{
+                padding: 10px 5%;
+            }
+            
+            .academics-list, .gallery-list, .staff-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .academic-item, .staff-item {
+                min-height: 350px;
+                padding: 30px 20px;
+            }
+            
+            .contact-right form {
+                margin-top: 30px;
+            }
+            
+            .header-content {
+                padding-top: 0;
+                text-align: center;
+            }
+            
+            .role-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .staff-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media only screen and (min-width: 769px) and (max-width: 1024px) {
+            .menu-icon, .close-icon {
+                display: none !important;
+            }
+            
+            nav ul {
+                display: flex !important;
+            }
+            
+            .header-text h1 {
+                font-size: 42px;
+            }
+            
+            .header-subtitle {
+                font-size: 32px;
+            }
+            
+            .about-col-1, .about-col-2 {
+                flex-basis: 100%;
+                margin-bottom: 30px;
+            }
+            
+            .about-col-1 {
+                display: flex;
+                justify-content: center;
+            }
+            
+            .academics-list, .gallery-list, .staff-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .contact-left, .contact-right {
+                flex-basis: 100%;
+                margin-bottom: 30px;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            .header-text h1 {
+                font-size: 28px;
+            }
+            
+            .header-subtitle {
+                font-size: 20px;
+            }
+            
+            .sub-title {
+                font-size: 30px;
+            }
+            
+            .academic-item, .staff-item {
+                padding: 20px 15px;
+                min-height: 300px;
+            }
+            
+            nav {
+                padding: 10px 5%;
+            }
+            
+            .header-content {
+                padding-top: 0;
+            }
+            
+            .staff-image {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        @media only screen and (min-width: 1025px) {
+            .menu-icon, .close-icon {
+                display: none !important;
+            }
+            
+            nav ul {
+                display: flex !important;
+            }
+            
+            nav {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+            }
+            
+            nav ul {
+                display: flex;
+                justify-content: space-between;
+                width: auto;
+            }
+            
+            nav ul li {
+                margin: 0 20px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <!-- Header -->
-    <div id="header">
-        <div class="container">
-            <nav>
-                <a href="#header" class="logo">Koshe</a>
-                <ul id="sidemenu">
-                    <li><a href="#header" class="nav-link">Home</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#academics" class="nav-link">Academics</a></li>
-                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
-                    <li><a href="#staff" class="nav-link">Staff</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                    <li><a href="#" id="loginBtn" class="nav-link">Login</a></li>
-                    <i class="fas fa-times close-icon" onclick="closemenu()"></i>
-                </ul>
-                <i class="fas fa-bars menu-icon" onclick="openmenu()"></i>
-            </nav>
-            <div class="header-content">
-                <div class="header-text">
-                    <p  style="color: #ff004f;font-weight: bold;"   class="header-subtitle">Quality Education</p>
-                    <h1 style="color:#ff004f;">Welcome to <span>Koshe</span> <br>Secondary School</h1>
-                    <p style="font-size: 18px; margin-bottom: 30px;">Providing excellent education in Mareko Special Woreda, Central Ethiopia</p>
-                    <a href="https://t.me/Koshe_S_S" class="btn">Learn More</a>
+<div id="header">
+    <div class="header-bg"></div>
+    <div class="container">
+        <nav>
+            <h1 style="font-size: 60px; color:#ff004f; font-weight: bolder;">KOSHE</h1>
+            <ul id="sidemenu">
+                <li><a href="#header" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#academics" class="nav-link">Academics</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#staff" class="nav-link">Staff</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#" class="nav-link" id="loginBtn">Login</a></li>
+                <i class="fas fa-times close-icon" onclick="closemenu()"></i>
+            </ul>
+            <i class="fas fa-bars menu-icon" onclick="openmenu()"></i>
+        </nav>
+        <div class="header-content">
+            <div class="header-text">
+                <p class="header-subtitle">Quality Education</p>
+                <h1>Welcome to <span>Koshe</span> <br>Secondary School</h1>
+                <p class="about-description">Providing excellent education in Mareko Special Woreda, Central Ethiopia for over three decades.</p>
+                <a href="https://t.me/Koshe_S_S" class="btn btn2" style="margin-top: 20px;">Learn More</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---------------about------>
+<div id="about">
+    <div class="container">
+        <div class="row">
+            <div class="about-col-1">
+                <img src="images/about.jpg" alt="About Our School">
+            </div>
+            <div class="about-col-2">
+                <h1 class="sub-title">About Our School</h1>
+                <p class="about-description">
+                    <strong>Founded in 1988, Koshe Secondary School has been providing quality education to students in Mareko Special Woreda for over three decades. Our mission is to empower students with knowledge, skills, and values necessary for success in higher education and life.</strong>
+                </p>
+                <p class="about-description">
+                    <strong>Located in the heart of Central Ethiopia, we offer a comprehensive curriculum with modern facilities and experienced teaching staff dedicated to student success.</strong>
+                </p>
+                
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('mission')">Mission</p>
+                    <p class="tab-links" onclick="opentab('facilities')">Facilities</p>
+                    <p class="tab-links" onclick="opentab('achievements')">Achievements</p>
+                </div>
+                
+                <div class="tab-contents active-tab" id="mission">
+                    <ul>
+                        <li><span>Our Vision</span><br>To be a leading educational institution that nurtures holistic development and academic excellence.</li>
+                        <li><span>Our Mission</span><br>To provide quality education that empowers students to become responsible citizens and lifelong learners.</li>
+                        <li><span>Our Values</span><br>Integrity, Excellence, Respect, and Community Service.</li>
+                    </ul>
+                </div>
+                
+                <div class="tab-contents" id="facilities">
+                    <ul>
+                        <li><span>Modern Classrooms</span><br>Well-equipped classrooms with digital learning tools</li>
+                        <li><span>Science Laboratories</span><br>Fully equipped labs for Physics, Chemistry, and Biology</li>
+                        <li><span>Library</span><br>Extensive collection of books and digital resources</li>
+                        <li><span>Sports Facilities</span><br>Playgrounds and equipment for various sports</li>
+                    </ul>
+                </div>
+                
+                <div class="tab-contents" id="achievements">
+                    <ul>
+                        <li><span>Academic Excellence</span><br>95% graduation rate with outstanding exam results</li>
+                        <li><span>Sports Champions</span><br>Multiple regional championships in athletics and football</li>
+                        <li><span>Community Impact</span><br>Active participation in community development projects</li>
+                        <li><span>Student Leadership</span><br>Developing future leaders through various programs</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- About Section -->
-    <div id="about">
-        <div class="container">
-            <h1 class="sub-title">About Our School</h1>
-            <div class="row">
-                <div class="about-col-1">
-                  <img src="images/about.jpg" alt="About Our School">  
-                </div>
-                <div class="about-col-2">
-                    <p class="about-description">
-                        <strong>Founded in 1988, Koshe Secondary School has been providing quality education to students in Mareko Special Woreda for over three decades. Our mission is to empower students with knowledge, skills, and values necessary for success in higher education and life.</strong>
-                    </p>
-                    <p class="about-description">
-                        <strong>Located in the heart of Central Ethiopia, we offer a comprehensive curriculum with modern facilities and experienced teaching staff dedicated to student success.</strong>
-                    </p>
-                    <div class="tab-titles">
-                        <p class="tab-links active-link" onclick="opentab('mission')">Mission</p>
-                        <p class="tab-links" onclick="opentab('facilities')">Facilities</p>
-                        <p class="tab-links" onclick="opentab('achievements')">Achievements</p>
-                    </div>
-                    <div class="tab-contents active-tab" id="mission">
-                        <ul>
-                            <li><span>Our Vision</span><br>To be a leading educational institution that nurtures holistic development and academic excellence.</li>
-                            <li><span>Our Mission</span><br>To provide quality education that empowers students to become responsible citizens and lifelong learners.</li>
-                            <li><span>Our Values</span><br>Integrity, Excellence, Respect, and Community Service.</li>
-                        </ul>
-                    </div>
-                    <div class="tab-contents" id="facilities">
-                        <ul>
-                            <li><span>Modern Classrooms</span><br>Well-equipped classrooms with digital learning tools</li>
-                            <li><span>Science Laboratories</span><br>Fully equipped labs for Physics, Chemistry, and Biology</li>
-                            <li><span>Library</span><br>Extensive collection of books and digital resources</li>
-                            <li><span>Sports Facilities</span><br>Playgrounds and equipment for various sports</li>
-                        </ul>
-                    </div>
-                    <div class="tab-contents" id="achievements">
-                        <ul>
-                            <li><span>Academic Excellence</span><br>95% graduation rate with outstanding exam results</li>
-                            <li><span>Sports Champions</span><br>Multiple regional championships in athletics and football</li>
-                            <li><span>Community Impact</span><br>Active participation in community development projects</li>
-                            <li><span>Student Leadership</span><br>Developing future leaders through various programs</li>
-                        </ul>
-                    </div>
-                </div>
+<!---------------academics--------------->
+<div id="academics">
+    <div class="container">
+        <h1 class="sub-title">Academic Programs</h1>
+        <div class="academics-list">
+            <div class="academic-item science-bg">
+                <i class="fas fa-atom"></i>
+                <h2>Natural Science</h2>
+                <p class="academic-description">Comprehensive science program with modern laboratories and hands-on experiments covering Biology, Chemistry, Physics, and Mathematics.</p>
+                <a href="https://t.me/Koshe_S_S" target="_blank"> <button class="academic-btn">Learn more</button></a>
+            </div>
+            <div class="academic-item social-bg">
+                <i class="fas fa-globe-africa"></i>
+                <h2>Social Science</h2>
+                <p class="academic-description">Exploring human society, history, geography, and civic education for comprehensive understanding of social structures and dynamics.</p>
+                <a href="https://t.me/Koshe_S_S" target="_blank"><button class="academic-btn">Learn more</button></a>
+            </div>
+            <div class="academic-item language-bg">
+                <i class="fas fa-language"></i>
+                <h2>Language Studies</h2>
+                <p class="academic-description">Comprehensive language education focusing on communication skills and cultural understanding in English, Amharic, and Marakigna.</p>
+                <a href="https://t.me/Koshe_S_S" target="_blank"><button class="academic-btn">Learn more</button></a>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Academics Section -->
-    <div id="academics">
-        <div class="container">
-            <h1 class="sub-title">Academic Programs</h1>
-            <div class="academics-list">
-                <div class="academic-item science-bg">
-                    <i class="fas fa-atom"></i>
-                    <h2>Natural Science</h2>
-                    <p class="academic-description">Comprehensive science program with modern laboratories and hands-on experiments covering Biology, Chemistry, Physics, and Mathematics.</p>
-                    <a href="https://t.me/Koshe_S_S"> <button class="academic-btn">Learn more</button></a>
+<!------------gallery------------>
+<div id="gallery">
+    <div class="container">
+        <h1 class="sub-title">School Gallery</h1>
+        <div class="gallery-list">
+            <div class="gallery">
+                <img src="images/Top.jpg" alt="Top Scorers">
+                <div class="layer">
+                    <h3>Top Scorers</h3>
+                    <p>Celebrating our highest achieving students in academic excellence</p>
+                    <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
                 </div>
-                <div class="academic-item social-bg">
-                    <i class="fas fa-globe-africa"></i>
-                    <h2>Social Science</h2>
-                    <p class="academic-description">Exploring human society, history, geography, and civic education for comprehensive understanding of social structures and dynamics.</p>
-                    <a href="https://t.me/Koshe_S_S"><button class="academic-btn">Learn more</button></a>
+            </div>
+            <div class="gallery">
+                <img src="images/Reward.jpg" alt="Student Appreciation">
+                <div class="layer">
+                    <h3>Student Appreciation</h3>
+                    <p>Recognizing outstanding student achievements and contributions</p>
+                    <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
                 </div>
-                <div class="academic-item language-bg">
-                    <i class="fas fa-language"></i>
-                    <h2>Language Studies</h2>
-                    <p class="academic-description">Comprehensive language education focusing on communication skills and cultural understanding in English, Amharic, and Marakigna.</p>
-                    <a href="https://t.me/Koshe_S_S"><button class="academic-btn">Learn more</button></a>
+            </div>
+            <div class="gallery">
+                <img src="images/sport.jpg" alt="Sports Competition">
+                <div class="layer">
+                    <h3>Sports Competition</h3>
+                    <p>Annual sports events promoting physical fitness and teamwork</p>
+                    <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <div class="gallery">
+                <img src="images/culture.jpg" alt="Cultural Festival">
+                <div class="layer">
+                    <h3>Cultural Festival</h3>
+                    <p>Celebrating Ethiopian cultural heritage through traditional performances</p>
+                    <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <div class="gallery">
+                <img src="images/students in garden.jpg" alt="Garden Activities">
+                <div class="layer">
+                    <h3>Garden Activities</h3>
+                    <p>Practical agriculture learning and environmental education</p>
+                    <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <div class="gallery">
+                <img src="images/Teachersingarden.jpg" alt="Teachers in Garden">
+                <div class="layer">
+                    <h3>Teachers in Garden</h3>
+                    <p>Staff supervision and participation in school garden activities</p>
+                    <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <div class="gallery">
+                <img src="images/classroom.jpg" alt="Classroom Activities">
+                <div class="layer">
+                    <h3>Classroom Activities</h3>
+                    <p>Interactive learning sessions in our modern classrooms</p>
+                    <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <div class="gallery">
+                <img src="images/library.jpg" alt="School Library">
+                <div class="layer">
+                    <h3>School Library</h3>
+                    <p>Extensive collection of books and digital learning resources</p>
+                    <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <div class="gallery">
+                <img src="images/lab.jpg" alt="Science Laboratory">
+                <div class="layer">
+                    <h3>Science Laboratory</h3>
+                    <p>Hands-on experiments in our fully equipped science labs</p>
+                    <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <div class="gallery">
+                <img src="images/art.jpg" alt="Art Class">
+                <div class="layer">
+                    <h3>Art Class</h3>
+                    <p>Creative expression through various art forms and mediums</p>
+                    <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <div class="gallery">
+                <img src="images/music.jpg" alt="Music Room">
+                <div class="layer">
+                    <h3>Music Room</h3>
+                    <p>Developing musical talents with various instruments and vocal training</p>
+                    <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <div class="gallery">
+                <img src="images/computer.jpg" alt="Computer Lab">
+                <div class="layer">
+                    <h3>Computer Lab</h3>
+                    <p>Modern technology education with up-to-date computer systems</p>
+                    <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
         </div>
+        <a href="#" class="btn">View More Photos</a>
     </div>
+</div>
 
-    <!-- Gallery Section -->
-    <div id="gallery">
-        <div class="container">
-            <h1 class="sub-title">School Gallery</h1>
-            <div class="gallery-list">
-                <!-- 12 Gallery Items -->
-                <div class="gallery">
-                    <img src="images/Top.jpg" alt="Top Scorers">
-                    <div class="layer">
-                        <h3>Top Scorers</h3>
-                        <p>Celebrating our highest achieving students in academic excellence</p>
-                    </div>
+<!------------staff------------>
+<div id="staff">
+    <div class="container">
+        <h1 class="sub-title">Our Teaching Staff</h1>
+        <div class="staff-list">
+            <div class="staff-item principal-bg">
+                <div class="staff-image">
+                    <!-- Placeholder for staff photo -->
+                     <img src="images/20250919_043229.jpg" alt="">
                 </div>
-                <div class="gallery">
-                    <img src="images/Reward.jpg" alt="Student Appreciation">
-                    <div class="layer">
-                        <h3>Student Appreciation</h3>
-                        <p>Recognizing outstanding student achievements and contributions</p>
-                    </div>
+                <h2>ZERIHUN</h2>
+                <p class="staff-description">School Principal with M.Ed in Educational Leadership and 15 years of experience in school administration and curriculum development.</p>
+            </div>
+            <div class="staff-item math-bg">
+                <div class="staff-image">
+                    <!-- Placeholder for staff photo -->
+                     <img src="images/About2.jpg" alt="">
                 </div>
-                <div class="gallery">
-                    <img src="images/sport.jpg" alt="Sports Competition">
-                    <div class="layer">
-                        <h3>Sports Competition</h3>
-                        <p>Annual sports events promoting physical fitness and teamwork</p>
-                    </div>
+                <h2>Mr. K</h2>
+                <p class="staff-description">Mathematics Teacher with M.Sc in Mathematics and specialization in curriculum development and student-centered learning approaches.</p>
+            </div>
+            <div class="staff-item science-bg">
+                <div class="staff-image">
+                    <!-- Placeholder for staff photo -->
+                     <img src="images/phone.png" alt="">
                 </div>
-                <div class="gallery">
-                    <img src="images/culture.jpg" alt="Cultural Festival">
-                    <div class="layer">
-                        <h3>Cultural Festival</h3>
-                        <p>Celebrating Ethiopian cultural heritage through traditional performances</p>
-                    </div>
-                </div>
-                <div class="gallery">
-                    <img src="images/students in garden.jpg" alt="Garden Activities">
-                    <div class="layer">
-                        <h3>Garden Activities</h3>
-                        <p>Practical agriculture learning and environmental education</p>
-                    </div>
-                </div>
-                <div class="gallery">
-                    <img src="images/Teachersingarden.jpg" alt="Teachers in Garden">
-                    <div class="layer">
-                        <h3>Teachers in Garden</h3>
-                        <p>Staff supervision and participation in school garden activities</p>
-                    </div>
-                </div>
-                <div class="gallery">
-                    <img src="images/QuestionAndAnswer.jpg" alt="Q&A Session">
-                    <div class="layer">
-                        <h3>Question Answer Program</h3>
-                        <p>Interactive learning sessions between students and teachers</p>
-                    </div>
-                </div>
-                <div class="gallery">
-                    <img src="images/office.jpg" alt="Reading Celebration">
-                    <div class="layer">
-                        <h3>Reading Celebration</h3>
-                        <p>Promoting literacy and reading culture among students</p>
-                    </div>
-                </div>
-                <div class="gallery">
-                    <img src="images/OfficeMeeting.jpg" alt="School Leadership">
-                    <div class="layer">
-                        <h3>School Leadership</h3>
-                        <p>Administrative activities and strategic planning sessions</p>
-                    </div>
-                </div>
-                <div class="gallery">
-                    <img src="images/lab.jpg" alt="Science Laboratory">
-                    <div class="layer">
-                        <h3>Science Laboratory</h3>
-                        <p>Hands-on experiments and practical science education</p>
-                    </div>
-                </div>
-                <div class="gallery">
-                    <img src="images/gusts.jpg" alt="Guest Visits">
-                    <div class="layer">
-                        <h3>Guest Visits</h3>
-                        <p>Educational visits and knowledge sharing with experts</p>
-                    </div>
-                </div>
-                <div class="gallery">
-                    <img src="images/home.jpg" alt="School Campus">
-                    <div class="layer">
-                        <h3>School Campus</h3>
-                        <p>Beautiful campus environment conducive to learning</p>
-                    </div>
-                </div>
+                <h2>Mr. Y</h2>
+                <p class="staff-description">Science Teacher with expertise in Physics and practical science education methodologies, dedicated to student success.</p>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Staff Section -->
-    <div id="staff">
-        <div class="container">
-            <h1 class="sub-title">Our Teaching Staff</h1>
-            <div class="staff-list">
-                <div class="staff-item principal-bg">
-                    <i class="fas fa-user-tie"></i>
-                    <h2>ZERIHUN</h2>
-                    <p class="staff-description">School Principal with M.Ed in Educational Leadership and 15 years of experience in school administration and curriculum development.</p>
+<!-------------contact------------>
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Contact Us</h1>
+                <p><i class="fas fa-paper-plane"></i>info@kosheschool.edu.et</p>
+                <p><i class="fas fa-phone-alt"></i>+2519 32 15 55 11</p>
+                <p><i class="fas fa-map-marker-alt"></i>Mareko Special Woreda, Central Ethiopia</p>
+                
+                <div class="social-icons">
+                    <a href="https://t.me/Koshe_S_S"><i class="fab fa-facebook"></i></a>
+                    <a href="https://t.me/Koshe_S_S"><i class="fab fa-twitter"></i></a>
+                    <a href="https://t.me/Koshe_S_S"><i class="fab fa-telegram"></i></a>
+                    <a href="https://t.me/Koshe_S_S"><i class="fab fa-linkedin"></i></a>
                 </div>
-                <div class="staff-item math-bg">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    <h2>Mr. K</h2>
-                    <p class="staff-description">Mathematics Teacher with M.Sc in Mathematics and specialization in curriculum development and student-centered learning approaches.</p>
-                </div>
-                <div class="staff-item science-bg">
-                    <i class="fas fa-flask"></i>
-                    <h2>Mr. Y</h2>
-                    <p class="staff-description">Science Teacher with expertise in Physics and practical science education methodologies, dedicated to student success.</p>
-                </div>
+                
+                <a href="images/የደረጃ እድገት ረቂቅ 2015 .doc" class="btn btn2">Download Brochure</a>
             </div>
-        </div>
-    </div>
-
-    <!-- Contact Section -->
-    <div id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="contact-left">
-                    <h1 class="sub-title">Contact Us</h1>
-                    <p><i class="fas fa-paper-plane"></i>info@kosheschool.edu.et</p> 
-                    <p><i class="fas fa-phone-alt"></i>+2519 32 15 55 11</p>
-                    <p><i class="fas fa-map-marker-alt"></i>Mareko Special Woreda, Central Ethiopia</p>
-                    <div class="social-icons">
-                        <a href="https://t.me/Koshe_S_S"><i class="fab fa-facebook"></i></a>
-                        <a href="https://t.me/Koshe_S_S"><i class="fab fa-twitter"></i></a>
-                        <a href="https://t.me/Koshe_S_S"><i class="fab fa-telegram"></i></a>
-                        <a href="https://t.me/Koshe_S_S"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                    <a href="images/የደረጃ እድገት ረቂቅ 2015 .doc" class="btn btn2">Download Brochure</a>
-                </div>
-                <div class="contact-right">
-                   <form name="submit-to-google-sheet" id="contact-form">
+            <div class="contact-right">
+                <form name="submit-to-google-sheet" id="contact-form">
                     <div class="mb-3">
                         <input type="text" name="Name" id="name" class="form-control form-input" placeholder="Your Name" required>
                         <div class="invalid-feedback">Please enter your name.</div>
@@ -266,339 +1284,334 @@
                         <div class="invalid-feedback">Please enter your message.</div>
                     </div>
                     <button type="submit" class="btn btn2">Submit</button>
-                   </form>
-                   <span id="msg"></span>
+                </form>
+                <span id="msg"></span>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>Copyright © 2023 Koshe Secondary School. Made with <i class="fas fa-heart"></i> by Hamid Awol</p>
+    </div>
+</div>
+
+<!-- Enhanced Login Modal -->
+<div class="modal-overlay" id="roleModal">
+    <div class="role-modal">
+        <!-- Role Selection -->
+        <div id="roleSelectionView">
+            <div class="modal-header">
+                <h2>Welcome to Koshe School Portal</h2>
+                <button class="close-modal" id="closeRoleModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p>Please select your role to continue to the login page</p>
+            <div class="role-options">
+                <div class="role-option" data-role="student">
+                    <div class="role-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Student</h3>
+                    <p>Access courses, assignments, and grades</p>
+                </div>
+                <div class="role-option" data-role="parent">
+                    <div class="role-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h3>Parent</h3>
+                    <p>Monitor your child's progress</p>
+                </div>
+                <div class="role-option" data-role="teacher">
+                    <div class="role-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Teacher</h3>
+                    <p>Access teaching materials</p>
+                </div>
+                <div class="role-option" data-role="staff">
+                    <div class="role-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Staff</h3>
+                    <p>Administrative tools</p>
                 </div>
             </div>
         </div>
-        <div class="copyright">
-          <p>Copyright © 2023 Koshe Secondary School. Made with <i class="fas fa-heart"></i> by Hamid Awol</p>  
-        </div>
-    </div>
 
-    <!-- Enhanced Login Modal -->
-    <div class="modal-overlay" id="roleModal">
-        <div class="role-modal">
-            <!-- Role Selection -->
-            <div id="roleSelectionView">
-                <div class="modal-header">
-                    <h2>Welcome to Koshe School Portal</h2>
-                    <button class="close-modal" id="closeRoleModal">
+        <!-- Login Form -->
+        <div class="login-form-container" id="loginFormContainer">
+            <div class="modal-header">
+                <h3>Login as <span class="role-highlight" id="selectedRoleText">Student</span></h3>
+                <div>
+                    <button class="back-to-roles" id="backToRoles">
+                        <i class="fas fa-arrow-left"></i> Back
+                    </button>
+                    <button class="close-modal" id="closeLoginModal">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
-                <p>Please select your role to continue to the login page</p>
-                <div class="role-options">
-                    <div class="role-option" data-role="student">
-                        <div class="role-icon">
-                            <i class="fas fa-user-graduate"></i>
-                        </div>
-                        <h3>Student</h3>
-                        <p>Access courses, assignments, and grades</p>
-                    </div>
-                    <div class="role-option" data-role="parent">
-                        <div class="role-icon">
-                            <i class="fas fa-user-friends"></i>
-                        </div>
-                        <h3>Parent</h3>
-                        <p>Monitor your child's progress</p>
-                    </div>
-                    <div class="role-option" data-role="teacher">
-                        <div class="role-icon">
-                            <i class="fas fa-chalkboard-teacher"></i>
-                        </div>
-                        <h3>Teacher</h3>
-                        <p>Access teaching materials</p>
-                    </div>
-                    <div class="role-option" data-role="staff">
-                        <div class="role-icon">
-                            <i class="fas fa-user-tie"></i>
-                        </div>
-                        <h3>Staff</h3>
-                        <p>Administrative tools</p>
-                    </div>
-                </div>
             </div>
-
-            <!-- Login Form -->
-            <div class="login-form-container" id="loginFormContainer">
-                <div class="modal-header">
-                    <h3>Login as <span class="role-highlight" id="selectedRoleText">Student</span></h3>
-                    <div>
-                        <button class="back-to-roles" id="backToRoles">
-                            <i class="fas fa-arrow-left"></i> Back
-                        </button>
-                        <button class="close-modal" id="closeLoginModal">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username or Email</label>
+                    <input type="text" id="username" name="username" required placeholder="Enter your username or email">
                 </div>
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label for="username">Username or Email</label>
-                        <input type="text" id="username" name="username" required placeholder="Enter your username or email">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required placeholder="Enter your password">
-                    </div>
-                    <div class="remember-forgot">
-                        <div class="remember-me">
-                            <input type="checkbox" id="rememberMe" name="rememberMe">
-                            <label for="rememberMe">Remember me</label>
-                        </div>
-                        <a href="#" class="forgot-password">Forgot Password?</a>
-                    </div>
-                    <button type="submit" class="login-btn">Login to Portal</button>
-                </form>
-                <div class="login-help">
-                    <p>Need help? Contact school administration at <strong>support@kosheschool.edu.et</strong></p>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter your password">
                 </div>
+                <div class="remember-forgot">
+                    <div class="remember-me">
+                        <input type="checkbox" id="rememberMe" name="rememberMe">
+                        <label for="rememberMe">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                <button type="submit" class="login-btn">Login to Portal</button>
+            </form>
+            <div class="login-help">
+                <p>Need help? Contact school administration at <strong>support@kosheschool.edu.et</strong></p>
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        // Tab functionality
-        var tablinks = document.getElementsByClassName("tab-links");
-        var tabcontents = document.getElementsByClassName("tab-contents");
-        
-        function opentab(tabname){
-            for(var tablink of tablinks){
-                tablink.classList.remove("active-link");
+<script>
+    // Tab functionality
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+    
+    function opentab(tabname){
+        for(var tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(var tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+    
+    // Mobile menu functionality
+    var sidemenu = document.getElementById("sidemenu");
+    
+    function openmenu() {
+        sidemenu.style.right = "0";
+        document.body.style.overflow = "hidden";
+    }
+    
+    function closemenu() {
+        sidemenu.style.right = "-200px";
+        document.body.style.overflow = "auto";
+    }
+    
+    // Close menu when clicking on navigation links
+    var navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                closemenu();
             }
-            for(var tabcontent of tabcontents){
-                tabcontent.classList.remove("active-tab");
-            }
-            event.currentTarget.classList.add("active-link");
-            document.getElementById(tabname).classList.add("active-tab");
-        }
-        
-        // Mobile menu functionality
-        var sidemenu = document.getElementById("sidemenu");
-        
-        function openmenu() {
-            sidemenu.style.right = "0";
-            document.body.style.overflow = "hidden";
-        }
-        
-        function closemenu() {
-            sidemenu.style.right = "-200px";
-            document.body.style.overflow = "auto";
-        }
-        
-        // Close menu when clicking on navigation links
-        var navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(function(link) {
-            link.addEventListener('click', function() {
-                if (window.innerWidth <= 768) {
-                    closemenu();
-                }
-            });
         });
-        
-        // Smooth scrolling with fixed navigation offset
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if (targetId !== '#') {
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        const offset = window.innerWidth <= 768 ? 80 : 100;
-                        window.scrollTo({
-                            top: targetElement.offsetTop - offset,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            });
-        });
-        
-        // Active navigation highlight on scroll
-        window.addEventListener('scroll', function() {
-            var sections = document.querySelectorAll('#header, #about, #academics, #gallery, #staff, #contact');
-            var navLinks = document.querySelectorAll('.nav-link');
-            
-            var current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - 150)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-        
-        // Form validation
-        const form = document.getElementById('contact-form');
-        const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-        const messageInput = document.getElementById('message');
-        
-        form.addEventListener('submit', function(e) {
+    });
+    
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            
-            let isValid = true;
-            
-            // Name validation
-            if (nameInput.value.trim() === '') {
-                nameInput.classList.add('is-invalid');
-                isValid = false;
-            } else {
-                nameInput.classList.remove('is-invalid');
+            const targetId = this.getAttribute('href');
+            if (targetId !== '#') {
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
             }
-            
-            // Email validation
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailPattern.test(emailInput.value.trim())) {
-                emailInput.classList.add('is-invalid');
-                isValid = false;
-            } else {
-                emailInput.classList.remove('is-invalid');
+        });
+    });
+    
+    // Active navigation highlight on scroll
+    window.addEventListener('scroll', function() {
+        var sections = document.querySelectorAll('#header, #about, #academics, #gallery, #staff, #contact');
+        var navLinks = document.querySelectorAll('.nav-link');
+        
+        var current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= (sectionTop - 150)) {
+                current = section.getAttribute('id');
             }
-            
-            // Message validation
-            if (messageInput.value.trim() === '') {
-                messageInput.classList.add('is-invalid');
-                isValid = false;
-            } else {
-                messageInput.classList.remove('is-invalid');
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
             }
+        });
+    });
+    
+    // Form validation
+    const form = document.getElementById('contact-form');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const messageInput = document.getElementById('message');
+    
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        let isValid = true;
+        
+        // Name validation
+        if (nameInput.value.trim() === '') {
+            nameInput.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            nameInput.classList.remove('is-invalid');
+        }
+        
+        // Email validation
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(emailInput.value.trim())) {
+            emailInput.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            emailInput.classList.remove('is-invalid');
+        }
+        
+        // Message validation
+        if (messageInput.value.trim() === '') {
+            messageInput.classList.add('is-invalid');
+            isValid = false;
+        } else {
+            messageInput.classList.remove('is-invalid');
+        }
+        
+        // If form is valid, submit it
+        if (isValid) {
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxKm4FbxWmw5ajwJWUEA18fAtUviVho0D7_L8hrcjdSCEoCjGpWnrwbLFXiNexRAId-/exec';
+            const msg = document.getElementById("msg");
             
-            // If form is valid, submit it
-            if (isValid) {
-                const scriptURL = 'https://script.google.com/macros/s/AKfycbxKm4FbxWmw5ajwJWUEA18fAtUviVho0D7_L8hrcjdSCEoCjGpWnrwbLFXiNexRAId-/exec';
-                const msg = document.getElementById("msg");
-                
-                fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                    .then(response => {
-                        msg.innerHTML = "Message sent successfully";
-                        setTimeout(function(){
-                            msg.innerHTML = ""; 
-                        },5000);
-                        form.reset();
-                    })
-                    .catch(error => console.error('Error!', error.message));
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    msg.innerHTML = "Message sent successfully";
+                    setTimeout(function(){
+                        msg.innerHTML = ""; 
+                    },5000);
+                    form.reset();
+                })
+                .catch(error => console.error('Error!', error.message));
+        }
+    });
+
+    // Login Modal Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const loginBtn = document.getElementById('loginBtn');
+        const roleModal = document.getElementById('roleModal');
+        const roleOptions = document.querySelectorAll('.role-option');
+        const roleSelectionView = document.getElementById('roleSelectionView');
+        const loginFormContainer = document.getElementById('loginFormContainer');
+        const backToRoles = document.getElementById('backToRoles');
+        const selectedRoleText = document.getElementById('selectedRoleText');
+        const loginForm = document.getElementById('loginForm');
+        const closeRoleModal = document.getElementById('closeRoleModal');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+
+        let currentRole = '';
+
+        // Show modal when login button is clicked
+        loginBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            roleModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            showRoleSelection();
+        });
+
+        // Role selection
+        roleOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                currentRole = this.getAttribute('data-role');
+                selectedRoleText.textContent = currentRole.charAt(0).toUpperCase() + currentRole.slice(1);
+                showLoginForm();
+            });
+        });
+
+        // Back to role selection
+        backToRoles.addEventListener('click', function() {
+            showRoleSelection();
+        });
+
+        // Close role modal
+        closeRoleModal.addEventListener('click', function() {
+            closeModal(roleModal);
+        });
+
+        // Close login modal
+        closeLoginModal.addEventListener('click', function() {
+            closeModal(roleModal);
+        });
+
+        // Login form submission
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username && password) {
+                simulateLogin(currentRole, username);
+            } else {
+                alert('Please enter both username and password.');
             }
         });
 
-        // Login Modal Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const loginBtn = document.getElementById('loginBtn');
-            const roleModal = document.getElementById('roleModal');
-            const roleOptions = document.querySelectorAll('.role-option');
-            const roleSelectionView = document.getElementById('roleSelectionView');
-            const loginFormContainer = document.getElementById('loginFormContainer');
-            const backToRoles = document.getElementById('backToRoles');
-            const selectedRoleText = document.getElementById('selectedRoleText');
-            const loginForm = document.getElementById('loginForm');
-            const closeRoleModal = document.getElementById('closeRoleModal');
-            const closeLoginModal = document.getElementById('closeLoginModal');
-
-            let currentRole = '';
-
-            // Show modal when login button is clicked
-            loginBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                roleModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                showRoleSelection();
-                // Close mobile menu if open
-                if (window.innerWidth <= 768) {
-                    closemenu();
-                }
-            });
-
-            // Role selection
-            roleOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    currentRole = this.getAttribute('data-role');
-                    selectedRoleText.textContent = currentRole.charAt(0).toUpperCase() + currentRole.slice(1);
-                    showLoginForm();
-                });
-            });
-
-            // Back to role selection
-            backToRoles.addEventListener('click', function() {
-                showRoleSelection();
-            });
-
-            // Close role modal
-            closeRoleModal.addEventListener('click', function() {
+        // Close modal when clicking outside
+        roleModal.addEventListener('click', function(e) {
+            if (e.target === roleModal) {
                 closeModal(roleModal);
-            });
-
-            // Close login modal
-            closeLoginModal.addEventListener('click', function() {
-                closeModal(roleModal);
-            });
-
-            // Login form submission
-            loginForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
-                
-                if (username && password) {
-                    simulateLogin(currentRole, username);
-                } else {
-                    alert('Please enter both username and password.');
-                }
-            });
-
-            // Close modal when clicking outside
-            roleModal.addEventListener('click', function(e) {
-                if (e.target === roleModal) {
-                    closeModal(roleModal);
-                }
-            });
-
-            // Close modal with Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && roleModal.classList.contains('active')) {
-                    closeModal(roleModal);
-                }
-            });
-
-            function showRoleSelection() {
-                roleSelectionView.style.display = 'block';
-                loginFormContainer.classList.remove('active');
-                loginForm.reset();
-            }
-
-            function showLoginForm() {
-                roleSelectionView.style.display = 'none';
-                loginFormContainer.classList.add('active');
-            }
-
-            function closeModal(modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-                showRoleSelection();
-            }
-
-            function simulateLogin(role, username) {
-                const loginBtn = document.querySelector('.login-btn');
-                const originalText = loginBtn.textContent;
-                loginBtn.textContent = 'Logging in...';
-                loginBtn.disabled = true;
-
-                setTimeout(() => {
-                    alert(`Successfully logged in as ${role}: ${username}\nRedirecting to ${role} dashboard...`);
-                    loginBtn.textContent = originalText;
-                    loginBtn.disabled = false;
-                    closeModal(roleModal);
-                }, 2000);
             }
         });
-    </script>
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && roleModal.classList.contains('active')) {
+                closeModal(roleModal);
+            }
+        });
+
+        function showRoleSelection() {
+            roleSelectionView.style.display = 'block';
+            loginFormContainer.classList.remove('active');
+            loginForm.reset();
+        }
+
+        function showLoginForm() {
+            roleSelectionView.style.display = 'none';
+            loginFormContainer.classList.add('active');
+        }
+
+        function closeModal(modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            showRoleSelection();
+        }
+
+        function simulateLogin(role, username) {
+            const loginBtn = document.querySelector('.login-btn');
+            const originalText = loginBtn.textContent;
+            loginBtn.textContent = 'Logging in...';
+            loginBtn.disabled = true;
+
+            setTimeout(() => {
+                alert(`Successfully logged in as ${role}: ${username}\nRedirecting to ${role} dashboard...`);
+                loginBtn.textContent = originalText;
+                loginBtn.disabled = false;
+                closeModal(roleModal);
+            }, 2000);
+        }
+    });
+</script>
 </body>
 </html>
