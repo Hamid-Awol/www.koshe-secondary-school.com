@@ -4,1129 +4,912 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Koshe Secondary School | Quality Education</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Reset default browser styles */
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            box-sizing: border-box;
+        }
+
+        /* Enable smooth scrolling for the entire page */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Set body background and text color */
+        body{
+            background: #080808;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Header section styling - FULL WIDTH BACKGROUND */
+        #header{
+            width: 100%;
+            min-height: 100vh;
+            background-image: url('images/school-building.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        /* Desktop Navigation */
+        .custom-navbar{
+            background: rgba(8, 8, 8, 0.95) !important;
+            padding: 15px 5%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Logo styling */
+        .logo {
+            color: #ff004f;
+            font-size: 60px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        /* Navigation link styling */
+        .nav-link-custom{
+            color: #fff !important;  
+            text-decoration: none;
+            font-size: 16px;
+            position: relative;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        /* Active navigation link color */
+        .nav-link-custom.active {
+            color: #ff004f !important;
+        }
+
+        /* Navigation link underline animation */
+        .nav-link-custom::after{
+            content: '';
+            width: 0;
+            height: 3px;
+            background: #ff004f;
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            transition: 0.5s;
+        }
+
+        /* Hover and active state for navigation underline */
+        .nav-link-custom:hover::after,
+        .nav-link-custom.active::after {
+            width: 100%;
+        }
+
+        /* Header content styling */
+        .header-content {
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        /* Header text styling */
+        .header-text{
+            max-width: 600px;
+        }
+
+        /* Header subtitle styling */
+        .header-subtitle{
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        /* Main header text styling */
+        .header-text h1{
+            font-size: 52px; 
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        /* Span color in header */
+        .header-text h1 span{
+            color: #ff004f;
+        }
+
+        /*-----------about--------*/
+        /* About section padding and text color */
+        #about{
+            padding: 80px 0; 
+            color: #ababab;
+            scroll-margin-top: 80px;
+        }
+
+        /* About image styling */
+        .about-col-1 img{
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 15px;
+            object-fit: cover;
+        }
+
+        /* Subtitle styling */
+        .sub-title{
+            font-size: 48px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* About description styling */
+        .about-description{
+            color: #867979;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        /* Tab titles flex layout */
+        .tab-titles{
+            display: flex;
+            margin: 20px 0 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Tab link styling */
+        .tab-links{
+            margin-right: 20px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        /* Tab link underline animation */
+        .tab-links::after{
+            content: '';
+            width: 0;
+            height: 3px;
+            background: #ff004f;
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            transition: 0.5s;
+        }
+
+        /* Active tab link underline */
+        .tab-links.active-link::after{
+            width: 50%;
+        }
+
+        /* Tab content list item styling */
+        .tab-contents ul li{
+            list-style: none;
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        /* Tab content span styling */
+        .tab-contents ul li span{
+            color: #b54769;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Hide tab contents by default */
+        .tab-contents{
+            display: none;
+        }
+
+        /* Show active tab content */
+        .tab-contents.active-tab{
+            display: block;
+        }
+
+        /*----------------------academics------------*/
+        /* Academics section padding */
+        #academics{
+            padding: 80px 0;
+            scroll-margin-top: 80px;
+        }
+
+        /* Academic item base styling */
+        .academic-item{
+            padding: 40px 30px;
+            font-size: 16px;
+            font-weight: 300;
+            border-radius: 10px;
+            transition: transform 0.5s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 400px;
+            text-align: center;
+        }
+
+        /* Academic background colors */
+        .science-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .social-bg {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .language-bg {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        /* Academic icon styling */
+        .academic-item i{
+            font-size: 50px;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        /* Academic title styling */
+        .academic-item h2{
+            font-size: 30px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        /* Academic description styling */
+        .academic-description{
+            color: #fff;
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Academic button styling */
+        .academic-btn{
+            color: #fff;
+            background-color: rgb(117, 29, 199);
+            width: 120px;
+            height: 40px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: auto;
+            align-self: center;
+        }
+
+        .academic-btn:hover{
+            background-color: rgb(95, 20, 165);
+        }
+
+        /* Academic item hover effect */
+        .academic-item:hover{
+            transform: translateY(-10px);
+        }
+
+        /*-------------gallery------*/
+        /* Gallery section padding */
+        #gallery{
+            padding: 80px 0;
+            scroll-margin-top: 80px;
+        }
+
+        /* Gallery item styling */
+        .gallery{
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            aspect-ratio: 4/3;
+            margin-bottom: 30px;
+        }
+
+        /* Gallery image styling */
+        .gallery img{
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            display: block;
+            transition: transform 0.5s, filter 0.5s;
+            object-fit: cover;
+        }
+
+        /* Gallery overlay layer */
+        .layer{
+            width: 100%; 
+            height: 0;
+            background: linear-gradient(rgba(0,0,0,0.7), #ff004f);
+            border-radius: 10px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 40px;
+            text-align: center;
+            transition: height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+        }
+
+        /* Gallery image hover effect */
+        .gallery:hover img{
+            transform: scale(1.1);
+            filter: brightness(0.7);
+        }
+
+        /* Gallery layer hover effect */
+        .gallery:hover .layer{
+            height: 100%;
+            opacity: 1;
+        }
+
+        /* Layer title styling */
+        .layer h3{
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 24px;
+            transform: translateY(20px);
+            transition: transform 0.5s 0.2s;
+        }
+
+        /* Layer paragraph styling */
+        .layer p{
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            transform: translateY(20px);
+            transition: transform 0.5s 0.3s;
+        }
+
+        /* Layer element animation on hover */
+        .gallery:hover .layer h3,
+        .gallery:hover .layer p {
+            transform: translateY(0);
+        }
+
+        /*-------------staff------*/
+        /* Staff section padding */
+        #staff{
+            padding: 80px 0;
+            scroll-margin-top: 80px;
+        }
+
+        /* Staff item base styling */
+        .staff-item{
+            padding: 40px 30px;
+            font-size: 16px;
+            font-weight: 300;
+            border-radius: 10px;
+            transition: transform 0.5s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 400px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Staff background colors */
+        .principal-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .math-bg {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .science-bg {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        /* Staff icon styling */
+        .staff-item i{
+            font-size: 50px;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        /* Staff title styling */
+        .staff-item h2{
+            font-size: 30px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        /* Staff description styling */
+        .staff-description{
+            color: #fff;
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Button styling */
+        .btn-custom{
+            display: block;
+            margin: 50px auto;
+            width: fit-content;
+            border: 1px solid #ff004f;
+            padding: 14px 50px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #fff;
+            transition: background 0.5s;
+            text-align: center;
+        }
+        /* Button hover effect */
+        .btn-custom:hover{
+            background: #ff004f;
+            color: #fff;
+        }
+
+        /*-----------------contact---------*/
+        #contact {
+            scroll-margin-top: 80px;
+        }
+
+        /* Contact paragraph spacing */
+        .contact-left p{
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Contact icon styling */
+        .contact-left p i{
+            color: #ff004f;
+            margin-right: 15px;
+            font-size: 25px;
+        }
+
+        /* Social icons container */
+        .social-icons{
+            margin-top: 30px;
+        }
+
+        /* Social icon link styling */
+        .social-icons a{
+            text-decoration: none;
+            font-size: 30px;
+            margin-right: 15px;
+            color: #ababab;
+            display: inline-block;
+            transition: transform 0.5s;
+        }
+
+        /* Social icon hover effect */
+        .social-icons a:hover {
+            color: #ff004f;
+            transform: translateY(-5px);
+        }
+
+        /* Secondary button styling */
+        .btn.btn2{
+            display: inline-block;
+            background: #ff004f;
+            padding: 14px 50px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #fff;
+            transition: background 0.5s;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        /* Form input styling with white text color */
+        .form-control {
+            background: #3a3a3a !important;
+            color: #ffffff !important;
+            border: 1px solid #555 !important;
+            padding: 15px !important;
+            margin: 15px 0 !important;
+            font-size: 18px !important;
+            border-radius: 6px !important;
+            width: 100%;
+        }
+
+        /* Form input placeholder text color */
+        .form-control::placeholder {
+            color: #cccccc !important;
+        }
+
+        /* Form input focus state */
+        .form-control:focus {
+            border-color: #ff004f !important;
+            box-shadow: 0 0 0 0.2rem rgba(255, 0, 79, 0.25) !important;
+            background: #3a3a3a !important;
+            color: #ffffff !important;
+        }
+
+        /* Form submit button styling */
+        form .btn2{
+            padding: 14px 60px;
+            font-size: 18px;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+        }
+
+        /* Copyright section styling */
+        .copyright{
+            width: 100%;  
+            text-align: center;
+            padding: 25px 0;
+            font-weight: 300;
+            margin-top: 20px;
+        } 
+
+        /* Copyright heart icon color */
+        .copyright i{
+            color: #ff004f;
+        }
+
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .role-modal {
+            background: #1a1a1a;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .role-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .role-option {
+            background: #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .role-option:hover {
+            background: #444;
+        }
+
+        .role-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: #ff004f;
+        }
+
+        .login-form-container {
+            display: none;
+        }
+
+        .login-form-container.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #555;
+            background: #333;
+            color: #fff;
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember-me input {
+            margin-right: 8px;
+        }
+
+        .forgot-password {
+            color: #ff004f;
+            text-decoration: none;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #ff004f;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #e0003f;
+        }
+
+        .login-help {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-help a {
+            color: #ff004f;
+            text-decoration: none;
+        }
+
+        .back-to-roles {
+            background: none;
+            border: 1px solid #ff004f;
+            color: #ff004f;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        /* Mobile Styles */
+        @media only screen and (max-width: 768px) {
+            /* Adjust header text size for mobile */
+            .header-text h1{
+                font-size: 32px;
+            }
+            
+            .header-subtitle {
+                font-size: 24px;
+            }
+            
+            /* Adjust subtitle size for mobile */
+            .sub-title{
+                font-size: 36px;
+            }
+            
+            /* About image margin on mobile */
+            .about-col-1{
+                margin-bottom: 30px;
+            }
+            
+            /* Maximize about image on mobile */
+            .about-col-1 img {
+                width: 100%;
+                max-width: 100% !important;
+                height: auto;
+            }
+            
+            /* Adjust about text size for mobile */
+            .about-col-2{
+                font-size: 14px;
+            }
+            
+            /* Adjust tab link size for mobile */
+            .tab-links{
+                font-size: 16px;
+                margin-right: 20px;
+                margin-bottom: 10px;
+            }
+            
+            /* Adjust copyright text size for mobile */
+            .copyright{
+                font-size: 14px;
+            }
+            
+            /* Adjust service item height on mobile */
+            .academic-item, .staff-item {
+                min-height: 350px;
+                padding: 30px 20px;
+            }
+            
+            /* Header content adjustments for mobile */
+            .header-content {
+                padding-top: 100px;
+                text-align: center;
+            }
+            
+            .role-options {
+                grid-template-columns: 1fr;
+            }
+            
+            /* MOBILE-SPECIFIC BACKGROUND FOR HOME SECTION - FULL BRIGHTNESS */
+            #header {
+                background-image: url('images/school-building.jpg');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                position: relative;
+                background-attachment: scroll;
+            }
+        }
+
+        /* Small phone styles */
+        @media only screen and (max-width: 480px) {
+            /* Further reduce header text size */
+            .header-text h1 {
+                font-size: 28px;
+            }
+            
+            .header-subtitle {
+                font-size: 20px;
+            }
+            
+            /* Adjust subtitle for small screens */
+            .sub-title {
+                font-size: 30px;
+            }
+            
+            /* Reduce padding in service items */
+            .academic-item, .staff-item {
+                padding: 20px 15px;
+                min-height: 300px;
+            }
+            
+            /* Adjust navigation for very small screens */
+            .custom-navbar {
+                padding: 10px 5%;
+            }
+            
+            /* Adjust header content padding */
+            .header-content {
+                padding-top: 80px;
+            }
+            
+            /* MOBILE BACKGROUND FOR SMALL PHONES - FULL BRIGHTNESS */
+            #header {
+                background-image: url('images/school-building.jpg');
+                background-size: cover;
+                background-position: center;
+                position: relative;
+                background-attachment: scroll;
+            }
+        }
+
+        /* Desktop specific styles */
+        @media only screen and (min-width: 1025px) {
+            /* Equal spacing between logo and navigation items */
+            .custom-navbar {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+            }
+            
+            /* Equal spacing for navigation items */
+            .nav-item {
+                margin: 0 20px;
+            }
+            
+            /* Fixed navigation for desktop */
+            .custom-navbar {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                background: rgba(8, 8, 8, 0.95);
+                z-index: 999;
+                padding: 15px 5%;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            }
+            
+            /* Ensure background spans full width on desktop */
+            #header {
+                background-size: cover;
+                background-position: center;
+            }
+        }
+    </style>
 </head>
-<style>
-    /* Reset default browser styles */
-*{
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
-    box-sizing: border-box;
-}
-
-/* Enable smooth scrolling for the entire page */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Set body background and text color */
-body{
-    background: #080808;
-    color: #fff;
-    overflow-x: hidden;
-}
-
-/* Header section styling - FULL WIDTH BACKGROUND */
-#header{
-    width: 100%;
-    min-height: 100vh;
-    background-image: url('images/school-building.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
-}
-
-/* Container padding for consistent spacing */
-.container{
-    padding: 10px 5%;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Desktop Navigation */
-nav{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    width: 100%;
-    padding: 15px 5%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: rgba(8, 8, 8, 0.95);
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Logo styling */
-.logo {
-    color: #ff004f;
-    font-size: 60px;
-    font-weight: 700;
-    text-decoration: none;
-}
-
-/* Navigation list styling */
-nav ul{
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-/* Navigation list item spacing */
-nav ul li{
-    margin: 0 15px;
-}
-
-/* Navigation link styling */
-nav ul li a{
-    color: #fff;  
-    text-decoration: none;
-    font-size: 16px;
-    position: relative;
-    transition: color 0.3s;
-    font-weight: 500;
-}
-
-/* Active navigation link color */
-nav ul li a.active {
-    color: #ff004f;
-}
-
-/* Navigation link underline animation */
-nav ul li a::after{
-    content: '';
-    width: 0;
-    height: 3px;
-    background: #ff004f;
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    transition: 0.5s;
-}
-
-/* Hover and active state for navigation underline */
-nav ul li a:hover::after,
-nav ul li a.active::after {
-    width: 100%;
-}
-
-/* Header content styling */
-.header-content {
-    display: flex;
-    align-items: center;
-    min-height: 100vh;
-    padding-top: 80px;
-    text-align: left;
-}
-
-/* Header text styling */
-.header-text{
-    max-width: 600px;
-}
-
-/* Header subtitle styling */
-.header-subtitle{
-    font-size: 40px;
-    margin-bottom: 15px;
-    color: #fff;
-    font-weight: 500;
-}
-
-/* Main header text styling */
-.header-text h1{
-    font-size: 52px; 
-    line-height: 1.2;
-    margin-bottom: 20px;
-}
-
-/* Span color in header */
-.header-text h1 span{
-    color: #ff004f;
-}
-
-/*-----------about--------*/
-/* About section padding and text color */
-#about{
-    padding: 80px 0; 
-    color: #ababab;
-    scroll-margin-top: 80px;
-}
-
-/* Flexbox layout for rows */
-.row{
-    display: flex; 
-    justify-content: space-between; 
-    flex-wrap: wrap;
-    align-items: flex-start;
-}
-
-/* About column 1 styling */
-.about-col-1{
-    flex-basis: 35%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 30px;
-}
-
-/* About image styling */
-.about-col-1 img{
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    border-radius: 15px;
-    object-fit: cover;
-}
-
-/* About column 2 styling */
-.about-col-2{
-    flex-basis: 60%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-/* Subtitle styling */
-.sub-title{
-    font-size: 48px;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* About description styling */
-.about-description{
-    color: #867979;
-    margin-bottom: 20px;
-    line-height: 1.6;
-    text-align: justify;
-}
-
-/* Tab titles flex layout */
-.tab-titles{
-    display: flex;
-    margin: 20px 0 40px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-/* Tab link styling */
-.tab-links{
-    margin-right: 20px;
-    font-size: 18px;
-    font-weight: 500;
-    cursor: pointer;
-    position: relative;
-    padding: 10px 0;
-}
-
-/* Tab link underline animation */
-.tab-links::after{
-    content: '';
-    width: 0;
-    height: 3px;
-    background: #ff004f;
-    position: absolute;
-    left: 0;
-    bottom: -8px;
-    transition: 0.5s;
-}
-
-/* Active tab link underline */
-.tab-links.active-link::after{
-    width: 50%;
-}
-
-/* Tab content list item styling */
-.tab-contents ul li{
-    list-style: none;
-    margin: 10px 0;
-    line-height: 1.6;
-}
-
-/* Tab content span styling */
-.tab-contents ul li span{
-    color: #b54769;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-/* Hide tab contents by default */
-.tab-contents{
-    display: none;
-}
-
-/* Show active tab content */
-.tab-contents.active-tab{
-    display: block;
-}
-
-/*----------------------academics------------*/
-/* Academics section padding */
-#academics{
-    padding: 80px 0;
-    scroll-margin-top: 80px;
-}
-
-/* Grid layout for academics list */
-.academics-list{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 40px;
-    margin-top: 50px;
-}
-
-/* Academic item base styling */
-.academic-item{
-    padding: 40px 30px;
-    font-size: 16px;
-    font-weight: 300;
-    border-radius: 10px;
-    transition: transform 0.5s;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 400px;
-    text-align: center;
-}
-
-/* Academic background colors */
-.science-bg {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.social-bg {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-}
-
-.language-bg {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-}
-
-/* Academic icon styling */
-.academic-item i{
-    font-size: 50px;
-    margin-bottom: 30px;
-    color: #fff;
-}
-
-/* Academic title styling */
-.academic-item h2{
-    font-size: 30px;
-    font-weight: 500;
-    margin-bottom: 15px;
-    color: #fff;
-}
-
-/* Academic description styling */
-.academic-description{
-    color: #fff;
-    font-weight: 500;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-/* Academic button styling */
-.academic-btn{
-    color: #fff;
-    background-color: rgb(117, 29, 199);
-    width: 120px;
-    height: 40px;
-    border-radius: 20px;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s;
-    margin-top: auto;
-    align-self: center;
-}
-
-.academic-btn:hover{
-    background-color: rgb(95, 20, 165);
-}
-
-/* Academic item hover effect */
-.academic-item:hover{
-    transform: translateY(-10px);
-}
-
-/*-------------gallery------*/
-/* Gallery section padding */
-#gallery{
-    padding: 80px 0;
-    scroll-margin-top: 80px;
-}
-
-/* Grid layout for gallery list */
-.gallery-list{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 40px;
-    margin-top: 50px;
-}
-
-/* Gallery item styling */
-.gallery{
-    border-radius: 10px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    aspect-ratio: 4/3;
-}
-
-/* Gallery image styling */
-.gallery img{
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    display: block;
-    transition: transform 0.5s, filter 0.5s;
-    object-fit: cover;
-}
-
-/* Gallery overlay layer */
-.layer{
-    width: 100%; 
-    height: 0;
-    background: linear-gradient(rgba(0,0,0,0.7), #ff004f);
-    border-radius: 10px;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 40px;
-    text-align: center;
-    transition: height 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    opacity: 0;
-}
-
-/* Gallery image hover effect */
-.gallery:hover img{
-    transform: scale(1.1);
-    filter: brightness(0.7);
-}
-
-/* Gallery layer hover effect */
-.gallery:hover .layer{
-    height: 100%;
-    opacity: 1;
-}
-
-/* Layer title styling */
-.layer h3{
-    font-weight: 600;
-    margin-bottom: 20px;
-    font-size: 24px;
-    transform: translateY(20px);
-    transition: transform 0.5s 0.2s;
-}
-
-/* Layer paragraph styling */
-.layer p{
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    transform: translateY(20px);
-    transition: transform 0.5s 0.3s;
-}
-
-/* Layer element animation on hover */
-.gallery:hover .layer h3,
-.gallery:hover .layer p {
-    transform: translateY(0);
-}
-
-/*-------------staff------*/
-/* Staff section padding */
-#staff{
-    padding: 80px 0;
-    scroll-margin-top: 80px;
-}
-
-/* Grid layout for staff list */
-.staff-list{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 40px;
-    margin-top: 50px;
-}
-
-/* Staff item base styling */
-.staff-item{
-    padding: 40px 30px;
-    font-size: 16px;
-    font-weight: 300;
-    border-radius: 10px;
-    transition: transform 0.5s;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 400px;
-    text-align: center;
-}
-
-/* Staff background colors */
-.principal-bg {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.math-bg {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-}
-
-.science-bg {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-}
-
-/* Staff icon styling */
-.staff-item i{
-    font-size: 50px;
-    margin-bottom: 30px;
-    color: #fff;
-}
-
-/* Staff title styling */
-.staff-item h2{
-    font-size: 30px;
-    font-weight: 500;
-    margin-bottom: 15px;
-    color: #fff;
-}
-
-/* Staff description styling */
-.staff-description{
-    color: #fff;
-    font-weight: 500;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-/* Button styling */
-.btn{
-    display: block;
-    margin: 50px auto;
-    width: fit-content;
-    border: 1px solid #ff004f;
-    padding: 14px 50px;
-    border-radius: 6px;
-    text-decoration: none;
-    color: #fff;
-    transition: background 0.5s;
-    text-align: center;
-}
-/* Button hover effect */
-.btn:hover{
-    background: #ff004f;
-    color: #fff;
-}
-
-/*-----------------contact---------*/
-#contact {
-    scroll-margin-top: 80px;
-}
-
-/* Contact left column width */
-.contact-left{
-  flex-basis: 35%; 
-}
-/* Contact right column width */
-.contact-right{
-  flex-basis: 60%;
-}
-
-/* Contact paragraph spacing */
-.contact-left p{
-    margin-top: 30px;
-    display: flex;
-    align-items: center;
-}
-
-/* Contact icon styling */
-.contact-left p i{
-    color: #ff004f;
-    margin-right: 15px;
-    font-size: 25px;
-}
-
-/* Social icons container */
-.social-icons{
-    margin-top: 30px;
-}
-
-/* Social icon link styling */
-.social-icons a{
-    text-decoration: none;
-    font-size: 30px;
-    margin-right: 15px;
-    color: #ababab;
-    display: inline-block;
-    transition: transform 0.5s;
-}
-
-/* Social icon hover effect */
-.social-icons a:hover {
-    color: #ff004f;
-    transform: translateY(-5px);
-}
-
-/* Secondary button styling */
-.btn.btn2{
-    display: inline-block;
-    background: #ff004f;
-    padding: 14px 50px;
-    border-radius: 6px;
-    text-decoration: none;
-    color: #fff;
-    transition: background 0.5s;
-    border: none;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-/* Contact form width */
-.contact-right form{
-    width: 100%;  
-}
-
-/* Form input styling with white text color */
-.form-control {
-    background: #3a3a3a !important;
-    color: #ffffff !important;
-    border: 1px solid #555 !important;
-    padding: 15px !important;
-    margin: 15px 0 !important;
-    font-size: 18px !important;
-    border-radius: 6px !important;
-    width: 100%;
-}
-
-/* Form input placeholder text color */
-.form-control::placeholder {
-    color: #cccccc !important;
-}
-
-/* Form input focus state */
-.form-control:focus {
-    border-color: #ff004f !important;
-    box-shadow: 0 0 0 0.2rem rgba(255, 0, 79, 0.25) !important;
-    background: #3a3a3a !important;
-    color: #ffffff !important;
-}
-
-/* Form submit button styling */
-form .btn2{
-    padding: 14px 60px;
-    font-size: 18px;
-    margin-top: 20px;
-    cursor: pointer;
-    border: none;
-    width: 100%;
-}
-
-/* Copyright section styling */
-.copyright{
-    width: 100%;  
-    text-align: center;
-    padding: 25px 0;
-    font-weight: 300;
-    margin-top: 20px;
-} 
-
-/* Copyright heart icon color */
-.copyright i{
-    color: #ff004f;
-}
-
-/*----------css for mobile menu---*/
-/* Hide menu icons by default - THIS IS THE FIX */
-.menu-icon, .close-icon{
-    display: none;
-}
-
-/* Side menu transition */
-#sidemenu {
-    transition: right 0.5s ease-in-out;
-}
-
-/* Modal styles */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s;
-}
-
-.modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.role-modal {
-    background: #1a1a1a;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 500px;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.close-modal {
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.role-options {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.role-option {
-    background: #333;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.role-option:hover {
-    background: #444;
-}
-
-.role-icon {
-    font-size: 40px;
-    margin-bottom: 10px;
-    color: #ff004f;
-}
-
-.login-form-container {
-    display: none;
-}
-
-.login-form-container.active {
-    display: block;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-}
-
-.form-group input, .form-group select, .form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border-radius: 6px;
-    border: 1px solid #555;
-    background: #333;
-    color: #fff;
-}
-
-.remember-forgot {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.remember-me {
-    display: flex;
-    align-items: center;
-}
-
-.remember-me input {
-    margin-right: 8px;
-}
-
-.forgot-password {
-    color: #ff004f;
-    text-decoration: none;
-}
-
-.login-btn {
-    width: 100%;
-    padding: 12px;
-    background: #ff004f;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s;
-}
-
-.login-btn:hover {
-    background: #e0003f;
-}
-
-.login-help {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.login-help a {
-    color: #ff004f;
-    text-decoration: none;
-}
-
-.back-to-roles {
-    background: none;
-    border: 1px solid #ff004f;
-    color: #ff004f;
-    padding: 8px 15px;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-right: 10px;
-}
-
-/* Mobile Styles */
-@media only screen and (max-width: 768px) {
-    /* Show menu icons on mobile only */
-    .menu-icon, .close-icon{
-        display: block;
-    }
-    
-    /* Hide regular navigation on mobile */
-    nav ul {
-        display: none;
-    }
-    
-    /* Adjust header text size for mobile */
-    .header-text h1{
-        font-size: 32px;
-    }
-    
-    .header-subtitle {
-        font-size: 24px;
-    }
-    
-    /* Mobile menu icon styling */
-    .menu-icon{
-        font-size: 25px;
-        cursor: pointer;
-        z-index: 1001;
-        color: #fff;
-    }
-    
-    /* Close icon styling - MOVED TO LEFT CORNER */
-    .close-icon{
-        position: absolute;
-        top: 25px;
-        left: 25px; /* Changed from right to left */
-        font-size: 25px;
-        cursor: pointer;
-        z-index: 1001;
-        color: #fff;
-    }
-    
-    /* Mobile side menu styling */
-    #sidemenu{
-        background: #ff004f;
-        position: fixed;
-        top: 0;
-        right: -200px;
-        width: 200px;
-        height: 100vh;
-        padding-top: 50px;
-        z-index: 1000;
-        flex-direction: column;
-        transition: right 0.5s ease-in-out;
-        display: flex;
-    }
-    
-    /* Mobile menu list item styling */
-    #sidemenu li{
-        display: block;
-        margin: 25px;
-        text-align: center;
-    } 
-    
-    /* Adjust subtitle size for mobile */
-    .sub-title{
-        font-size: 36px;
-    }
-    
-    /* Full width for about columns on mobile */
-    .about-col-1, .about-col-2{
-        flex-basis: 100%;
-    }
-    
-    /* About image margin on mobile */
-    .about-col-1{
-        margin-bottom: 30px;
-    }
-    
-    /* Maximize about image on mobile */
-    .about-col-1 img {
-        width: 100%;
-        max-width: 100% !important;
-        height: auto;
-    }
-    
-    /* Adjust about text size for mobile */
-    .about-col-2{
-        font-size: 14px;
-    }
-    
-    /* Adjust tab link size for mobile */
-    .tab-links{
-        font-size: 16px;
-        margin-right: 20px;
-        margin-bottom: 10px;
-    }
-    
-    /* Full width for contact columns on mobile */
-    .contact-left, .contact-right{
-        flex-basis: 100%;
-    }
-    
-    /* Adjust copyright text size for mobile */
-    .copyright{
-        font-size: 14px;
-    }
-    
-    /* Adjust container padding for mobile */
-    .container{
-        padding: 10px 5%;
-    }
-    
-    /* Stack services vertically on mobile */
-    .academics-list, .gallery-list, .staff-list {
-        grid-template-columns: 1fr;
-    }
-    
-    /* Adjust service item height on mobile */
-    .academic-item, .staff-item {
-        min-height: 350px;
-        padding: 30px 20px;
-    }
-    
-    /* Contact form adjustments for mobile */
-    .contact-right form {
-        margin-top: 30px;
-    }
-    
-    /* Header content adjustments for mobile */
-    .header-content {
-        padding-top: 100px;
-        text-align: center;
-    }
-    
-    .role-options {
-        grid-template-columns: 1fr;
-    }
-    
-    /* MOBILE-SPECIFIC BACKGROUND FOR HOME SECTION - FULL BRIGHTNESS */
-    #header {
-        background-image: url('images/background.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: relative;
-    }
-}
-
-/* Tablet Styles */
-@media only screen and (min-width: 769px) and (max-width: 1024px) {
-    /* Keep menu icons hidden on tablet */
-    .menu-icon, .close-icon {
-        display: none !important;
-    }
-    
-    /* Show regular navigation on tablet */
-    nav ul {
-        display: flex !important;
-    }
-    
-    /* Adjust header text for tablet */
-    .header-text h1 {
-        font-size: 42px;
-    }
-    
-    .header-subtitle {
-        font-size: 32px;
-    }
-    
-    /* Adjust about columns for tablet */
-    .about-col-1, .about-col-2 {
-        flex-basis: 100%;
-        margin-bottom: 30px;
-    }
-    
-    /* Center about image on tablet */
-    .about-col-1 {
-        display: flex;
-        justify-content: center;
-    }
-    
-    /* Adjust services grid for tablet */
-    .academics-list, .gallery-list, .staff-list {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    /* Adjust contact columns for tablet */
-    .contact-left, .contact-right {
-        flex-basis: 100%;
-        margin-bottom: 30px;
-    }
-    
-    /* Ensure background spans full width on tablet */
-    #header {
-        background-size: cover;
-        background-position: center;
-    }
-}
-
-/* Small phone styles */
-@media only screen and (max-width: 480px) {
-    /* Further reduce header text size */
-    .header-text h1 {
-        font-size: 28px;
-    }
-    
-    .header-subtitle {
-        font-size: 20px;
-    }
-    
-    /* Adjust subtitle for small screens */
-    .sub-title {
-        font-size: 30px;
-    }
-    
-    /* Reduce padding in service items */
-    .academic-item, .staff-item {
-        padding: 20px 15px;
-        min-height: 300px;
-    }
-    
-    /* Adjust navigation for very small screens */
-    nav {
-        padding: 10px 5%;
-    }
-    
-    /* Adjust header content padding */
-    .header-content {
-        padding-top: 80px;
-    }
-    
-    /* MOBILE BACKGROUND FOR SMALL PHONES - FULL BRIGHTNESS */
-    #header {
-        background-image: url('images/background.jpg');
-        background-size: cover;
-        background-position: center;
-        position: relative;
-    }
-}
-
-/* Desktop specific styles */
-@media only screen and (min-width: 1025px) {
-    /* Hide mobile menu icons on desktop */
-    .menu-icon, .close-icon {
-        display: none !important;
-    }
-    
-    /* Show regular navigation on desktop */
-    nav ul {
-        display: flex !important;
-    }
-    
-    /* Equal spacing between logo and navigation items */
-    nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-    }
-    
-    /* Navigation container with equal spacing */
-    nav ul {
-        display: flex;
-        justify-content: space-between;
-        width: auto;
-    }
-    
-    /* Equal spacing for navigation items */
-    nav ul li {
-        margin: 0 20px;
-    }
-    
-    /* Fixed navigation for desktop */
-    nav {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        background: rgba(8, 8, 8, 0.95);
-        z-index: 999;
-        padding: 15px 5%;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    }
-    
-    /* Ensure background spans full width on desktop */
-    #header {
-        background-size: cover;
-        background-position: center;
-    }
-}
-</style>
 <body>
     <!-- Header -->
     <div id="header">
+        <!-- Bootstrap Navigation -->
+        <nav class="navbar navbar-expand-lg custom-navbar">
+            <div class="container-fluid">
+                <a class="navbar-brand logo" href="#header">Koshe</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars text-white"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom active" href="#header">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom" href="#about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom" href="#academics">Academics</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom" href="#gallery">Gallery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom" href="#staff">Staff</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom" href="#contact">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom" href="#" id="loginBtn">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
         <div class="container">
-            <nav>
-                <a href="#header" class="logo">Koshe</a>
-                <ul id="sidemenu">
-                    <li><a href="#header" class="nav-link">Home</a></li>
-                    <li><a href="#about" class="nav-link">About</a></li>
-                    <li><a href="#academics" class="nav-link">Academics</a></li>
-                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
-                    <li><a href="#staff" class="nav-link">Staff</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                    <li><a href="#" id="loginBtn" class="nav-link">Login</a></li>
-                    <i class="fas fa-times close-icon" onclick="closemenu()"></i>
-                </ul>
-                <i class="fas fa-bars menu-icon" onclick="openmenu()"></i>
-            </nav>
-            <div class="header-content">
-                <div class="header-text">
-                    <p  style="color: #ff004f;font-weight: bold;"   class="header-subtitle">Quality Education</p>
-                    <h1 style="color:#ff004f;">Welcome to <span>Koshe</span> <br>Secondary School</h1>
-                    <p style="font-size: 18px; margin-bottom: 30px;">Providing excellent education in Mareko Special Woreda, Central Ethiopia</p>
-                    <a href="https://t.me/Koshe_S_S" class="btn">Learn More</a>
+            <div class="row header-content">
+                <div class="col-12">
+                    <div class="header-text">
+                        <p style="color: #ff004f;font-weight: bold;" class="header-subtitle">Quality Education</p>
+                        <h1 style="color:#ff004f;">Welcome to <span>Koshe</span> <br>Secondary School</h1>
+                        <p style="font-size: 18px; margin-bottom: 30px;">Providing excellent education in Mareko Special Woreda, Central Ethiopia</p>
+                        <a href="https://t.me/Koshe_S_S" class="btn-custom">Learn More</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1137,10 +920,10 @@ form .btn2{
         <div class="container">
             <h1 class="sub-title">About Our School</h1>
             <div class="row">
-                <div class="about-col-1">
-                  <img src="images/About2.jpg" alt="About Our School">  
+                <div class="col-lg-4 about-col-1">
+                  <img src="images/About2.jpg" alt="About Our School" class="img-fluid">  
                 </div>
-                <div class="about-col-2">
+                <div class="col-lg-8 about-col-2">
                     <p class="about-description">
                         <strong>Founded in 1988, Koshe Secondary School has been providing quality education to students in Mareko Special Woreda for over three decades. Our mission is to empower students with knowledge, skills, and values necessary for success in higher education and life.</strong>
                     </p>
@@ -1184,24 +967,30 @@ form .btn2{
     <div id="academics">
         <div class="container">
             <h1 class="sub-title">Academic Programs</h1>
-            <div class="academics-list">
-                <div class="academic-item science-bg">
-                    <i class="fas fa-atom"></i>
-                    <h2>Natural Science</h2>
-                    <p class="academic-description">Comprehensive science program with modern laboratories and hands-on experiments covering Biology, Chemistry, Physics, and Mathematics.</p>
-                    <a href="https://t.me/Koshe_S_S"> <button class="academic-btn">Learn more</button></a>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="academic-item science-bg">
+                        <i class="fas fa-atom"></i>
+                        <h2>Natural Science</h2>
+                        <p class="academic-description">Comprehensive science program with modern laboratories and hands-on experiments covering Biology, Chemistry, Physics, and Mathematics.</p>
+                        <a href="https://t.me/Koshe_S_S"> <button class="academic-btn">Learn more</button></a>
+                    </div>
                 </div>
-                <div class="academic-item social-bg">
-                    <i class="fas fa-globe-africa"></i>
-                    <h2>Social Science</h2>
-                    <p class="academic-description">Exploring human society, history, geography, and civic education for comprehensive understanding of social structures and dynamics.</p>
-                    <a href="https://t.me/Koshe_S_S"><button class="academic-btn">Learn more</button></a>
+                <div class="col-md-4 mb-4">
+                    <div class="academic-item social-bg">
+                        <i class="fas fa-globe-africa"></i>
+                        <h2>Social Science</h2>
+                        <p class="academic-description">Exploring human society, history, geography, and civic education for comprehensive understanding of social structures and dynamics.</p>
+                        <a href="https://t.me/Koshe_S_S"><button class="academic-btn">Learn more</button></a>
+                    </div>
                 </div>
-                <div class="academic-item language-bg">
-                    <i class="fas fa-language"></i>
-                    <h2>Language Studies</h2>
-                    <p class="academic-description">Comprehensive language education focusing on communication skills and cultural understanding in English, Amharic, and Marakigna.</p>
-                    <a href="https://t.me/Koshe_S_S"><button class="academic-btn">Learn more</button></a>
+                <div class="col-md-4 mb-4">
+                    <div class="academic-item language-bg">
+                        <i class="fas fa-language"></i>
+                        <h2>Language Studies</h2>
+                        <p class="academic-description">Comprehensive language education focusing on communication skills and cultural understanding in English, Amharic, and Marakigna.</p>
+                        <a href="https://t.me/Koshe_S_S"><button class="academic-btn">Learn more</button></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1211,90 +1000,114 @@ form .btn2{
     <div id="gallery">
         <div class="container">
             <h1 class="sub-title">School Gallery</h1>
-            <div class="gallery-list">
+            <div class="row">
                 <!-- 12 Gallery Items -->
-                <div class="gallery">
-                    <img src="images/Top.jpg" alt="Top Scorers">
-                    <div class="layer">
-                        <h3>Top Scorers</h3>
-                        <p>Celebrating our highest achieving students in academic excellence</p>
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery">
+                        <img src="images/Top.jpg" alt="Top Scorers" class="img-fluid">
+                        <div class="layer">
+                            <h3>Top Scorers</h3>
+                            <p>Celebrating our highest achieving students in academic excellence</p>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery">
-                    <img src="images/Reward.jpg" alt="Student Appreciation">
-                    <div class="layer">
-                        <h3>Student Appreciation</h3>
-                        <p>Recognizing outstanding student achievements and contributions</p>
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery">
+                        <img src="images/Reward.jpg" alt="Student Appreciation" class="img-fluid">
+                        <div class="layer">
+                            <h3>Student Appreciation</h3>
+                            <p>Recognizing outstanding student achievements and contributions</p>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery">
-                    <img src="images/sport.jpg" alt="Sports Competition">
-                    <div class="layer">
-                        <h3>Sports Competition</h3>
-                        <p>Annual sports events promoting physical fitness and teamwork</p>
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery">
+                        <img src="images/sport.jpg" alt="Sports Competition" class="img-fluid">
+                        <div class="layer">
+                            <h3>Sports Competition</h3>
+                            <p>Annual sports events promoting physical fitness and teamwork</p>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery">
-                    <img src="images/culture.jpg" alt="Cultural Festival">
-                    <div class="layer">
-                        <h3>Cultural Festival</h3>
-                        <p>Celebrating Ethiopian cultural heritage through traditional performances</p>
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery">
+                        <img src="images/culture.jpg" alt="Cultural Festival" class="img-fluid">
+                        <div class="layer">
+                            <h3>Cultural Festival</h3>
+                            <p>Celebrating Ethiopian cultural heritage through traditional performances</p>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery">
-                    <img src="images/students in garden.jpg" alt="Garden Activities">
-                    <div class="layer">
-                        <h3>Garden Activities</h3>
-                        <p>Practical agriculture learning and environmental education</p>
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery">
+                        <img src="images/students in garden.jpg" alt="Garden Activities" class="img-fluid">
+                        <div class="layer">
+                            <h3>Garden Activities</h3>
+                            <p>Practical agriculture learning and environmental education</p>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery">
-                    <img src="images/Teachersingarden.jpg" alt="Teachers in Garden">
-                    <div class="layer">
-                        <h3>Teachers in Garden</h3>
-                        <p>Staff supervision and participation in school garden activities</p>
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery">
+                        <img src="images/Teachersingarden.jpg" alt="Teachers in Garden" class="img-fluid">
+                        <div class="layer">
+                            <h3>Teachers in Garden</h3>
+                            <p>Staff supervision and participation in school garden activities</p>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery">
-                    <img src="images/QuestionAndAnswer.jpg" alt="Q&A Session">
-                    <div class="layer">
-                        <h3>Question Answer Program</h3>
-                        <p>Interactive learning sessions between students and teachers</p>
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery">
+                        <img src="images/QuestionAndAnswer.jpg" alt="Q&A Session" class="img-fluid">
+                        <div class="layer">
+                            <h3>Question Answer Program</h3>
+                            <p>Interactive learning sessions between students and teachers</p>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery">
-                    <img src="images/office.jpg" alt="Reading Celebration">
-                    <div class="layer">
-                        <h3>Reading Celebration</h3>
-                        <p>Promoting literacy and reading culture among students</p>
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery">
+                        <img src="images/office.jpg" alt="Reading Celebration" class="img-fluid">
+                        <div class="layer">
+                            <h3>Reading Celebration</h3>
+                            <p>Promoting literacy and reading culture among students</p>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery">
-                    <img src="images/OfficeMeeting.jpg" alt="School Leadership">
-                    <div class="layer">
-                        <h3>School Leadership</h3>
-                        <p>Administrative activities and strategic planning sessions</p>
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery">
+                        <img src="images/OfficeMeeting.jpg" alt="School Leadership" class="img-fluid">
+                        <div class="layer">
+                            <h3>School Leadership</h3>
+                            <p>Administrative activities and strategic planning sessions</p>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery">
-                    <img src="images/lab.jpg" alt="Science Laboratory">
-                    <div class="layer">
-                        <h3>Science Laboratory</h3>
-                        <p>Hands-on experiments and practical science education</p>
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery">
+                        <img src="images/lab.jpg" alt="Science Laboratory" class="img-fluid">
+                        <div class="layer">
+                            <h3>Science Laboratory</h3>
+                            <p>Hands-on experiments and practical science education</p>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery">
-                    <img src="images/gusts.jpg" alt="Guest Visits">
-                    <div class="layer">
-                        <h3>Guest Visits</h3>
-                        <p>Educational visits and knowledge sharing with experts</p>
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery">
+                        <img src="images/gusts.jpg" alt="Guest Visits" class="img-fluid">
+                        <div class="layer">
+                            <h3>Guest Visits</h3>
+                            <p>Educational visits and knowledge sharing with experts</p>
+                        </div>
                     </div>
                 </div>
-                <div class="gallery">
-                    <img src="images/home.jpg" alt="School Campus">
-                    <div class="layer">
-                        <h3>School Campus</h3>
-                        <p>Beautiful campus environment conducive to learning</p>
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery">
+                        <img src="images/home.jpg" alt="School Campus" class="img-fluid">
+                        <div class="layer">
+                            <h3>School Campus</h3>
+                            <p>Beautiful campus environment conducive to learning</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1305,21 +1118,27 @@ form .btn2{
     <div id="staff">
         <div class="container">
             <h1 class="sub-title">Our Teaching Staff</h1>
-            <div class="staff-list">
-                <div class="staff-item principal-bg">
-                    <i class="fas fa-user-tie"></i>
-                    <h2>ZERIHUN</h2>
-                    <p class="staff-description">School Principal with M.Ed in Educational Leadership and 15 years of experience in school administration and curriculum development.</p>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="staff-item principal-bg">
+                        <i class="fas fa-user-tie"></i>
+                        <h2>ZERIHUN</h2>
+                        <p class="staff-description">School Principal with M.Ed in Educational Leadership and 15 years of experience in school administration and curriculum development.</p>
+                    </div>
                 </div>
-                <div class="staff-item math-bg">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                    <h2>Mr. K</h2>
-                    <p class="staff-description">Mathematics Teacher with M.Sc in Mathematics and specialization in curriculum development and student-centered learning approaches.</p>
+                <div class="col-md-4 mb-4">
+                    <div class="staff-item math-bg">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <h2>Mr. K</h2>
+                        <p class="staff-description">Mathematics Teacher with M.Sc in Mathematics and specialization in curriculum development and student-centered learning approaches.</p>
+                    </div>
                 </div>
-                <div class="staff-item science-bg">
-                    <i class="fas fa-flask"></i>
-                    <h2>Mr. Y</h2>
-                    <p class="staff-description">Science Teacher with expertise in Physics and practical science education methodologies, dedicated to student success.</p>
+                <div class="col-md-4 mb-4">
+                    <div class="staff-item science-bg">
+                        <i class="fas fa-flask"></i>
+                        <h2>Mr. Y</h2>
+                        <p class="staff-description">Science Teacher with expertise in Physics and practical science education methodologies, dedicated to student success.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1329,7 +1148,7 @@ form .btn2{
     <div id="contact">
         <div class="container">
             <div class="row">
-                <div class="contact-left">
+                <div class="col-lg-5 contact-left">
                     <h1 class="sub-title">Contact Us</h1>
                     <p><i class="fas fa-paper-plane"></i>info@kosheschool.edu.et</p> 
                     <p><i class="fas fa-phone-alt"></i>+2519 32 15 55 11</p>
@@ -1342,7 +1161,7 @@ form .btn2{
                     </div>
                     <a href="images/የደረጃ እድገት ረቂቅ 2015 .doc" class="btn btn2">Download Brochure</a>
                 </div>
-                <div class="contact-right">
+                <div class="col-lg-7 contact-right">
                    <form name="submit-to-google-sheet" id="contact-form">
                     <div class="mb-3">
                         <input type="text" name="Name" id="name" class="form-control form-input" placeholder="Your Name" required>
@@ -1453,6 +1272,8 @@ form .btn2{
         </div>
     </div>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Tab functionality
         var tablinks = document.getElementsByClassName("tab-links");
@@ -1468,29 +1289,6 @@ form .btn2{
             event.currentTarget.classList.add("active-link");
             document.getElementById(tabname).classList.add("active-tab");
         }
-        
-        // Mobile menu functionality
-        var sidemenu = document.getElementById("sidemenu");
-        
-        function openmenu() {
-            sidemenu.style.right = "0";
-            document.body.style.overflow = "hidden";
-        }
-        
-        function closemenu() {
-            sidemenu.style.right = "-200px";
-            document.body.style.overflow = "auto";
-        }
-        
-        // Close menu when clicking on navigation links
-        var navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(function(link) {
-            link.addEventListener('click', function() {
-                if (window.innerWidth <= 768) {
-                    closemenu();
-                }
-            });
-        });
         
         // Smooth scrolling with fixed navigation offset
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1513,7 +1311,7 @@ form .btn2{
         // Active navigation highlight on scroll
         window.addEventListener('scroll', function() {
             var sections = document.querySelectorAll('#header, #about, #academics, #gallery, #staff, #contact');
-            var navLinks = document.querySelectorAll('.nav-link');
+            var navLinks = document.querySelectorAll('.nav-link-custom');
             
             var current = '';
             sections.forEach(section => {
@@ -1606,10 +1404,6 @@ form .btn2{
                 roleModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
                 showRoleSelection();
-                // Close mobile menu if open
-                if (window.innerWidth <= 768) {
-                    closemenu();
-                }
             });
 
             // Role selection
